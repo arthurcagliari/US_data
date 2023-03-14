@@ -12,6 +12,6 @@ def sobre():
 
 @app.route("/contato")
 def contato():
-  return "Aqui vai o conteúdo da página Conteúdo"
+  return "Aqui vai o conteúdo da página Contato"
 
 
