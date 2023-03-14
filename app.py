@@ -7,7 +7,7 @@ menu = """
 <br>
 
 <img src="https://pbs.twimg.com/profile_images/1623393254153543686/SiIQ1MKu_400x400.jpg">
-""""
+"""
 
 @app.route("/")
 def index():
