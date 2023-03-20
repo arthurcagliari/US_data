@@ -22,4 +22,14 @@ def sobre():
 def contato():
   return menu + "Aqui vai o conteúdo da página Contato" + imagem
 
+@app.route("/promocoes")
+def promocoes():
+  conteudo = menu + """
+  Encontrei as seguintes promoções no <a href="https://t.me/promocoeseachadinhos">@promocoeseachadinhos</a>:
+  <br>
+  <ul>
+  """
+  for promocao in ultimas_promocoes():
+    conteudo += f"<li>{promocao}</li>"
+  return conteudo + "</ul>"
 
