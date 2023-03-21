@@ -1,7 +1,8 @@
-from flask import Flask
-from tchan import ChannelScraper
 import requests
 import os
+from flask import Flask
+from tchan import ChannelScraper
+
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
