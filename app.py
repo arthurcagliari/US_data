@@ -9,8 +9,22 @@ TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
 
 app = Flask(__name__)
 
+def ultimas_promocoes():
+  scraper = ChannelScraper()
+  contador = 0
+  resultado = []
+  for message in scraper.messages("promocoeseachadinhos"):
+    contador += 1
+    texto = message.text.strip().splitlines()[0]
+    resultado.append(f"{message.created_at} {texto}")
+    if contador == 10:
+      return resultado
+
+    
 menu = """
-<br><a href="/">Página Inicial</a> | <a href="/sobre">Sobre</a> | <a href="/contato">Contato</a><br> | <a href="/promocoes">Promoções</a>"""
+<a href="/">Página inicial</a> | <a href="/promocoes">Promoções</a> | <a href="/sobre">Sobre</a> | <a href="/contato">Contato</a>
+<br>
+"""
 
 indice = """<br><img src="https://cdn-dejpn.nitrocdn.com/uxismCAJKdZklcCeScRYXbxxVTZIsrib/assets/static/optimized/rev-58a7024/wp-content/uploads/2021/08/FANI-slider-02.png"><br>"""
 imagem = """<br><img src="https://media.tenor.com/QPDDG_qlvKkAAAAC/tata-werneck-trolala.gif"><br>"""
@@ -37,6 +51,24 @@ def promocoes():
   """
   for promocao in ultimas_promocoes():
     conteudo += f"<li>{promocao}</li>"
+  return conteudo + "</ul>"
+
+
+@app.route("/promocoes2")
+def promocoes2():
+  conteudo = menu + """
+  Encontrei as seguintes promoções no <a href="https://t.me/promocoeseachadinhos">@promocoeseachadinhos</a>:
+  <br>
+  <ul>
+  """
+  scraper = ChannelScraper()
+  contador = 0
+  for message in scraper.messages("promocoeseachadinhos"):
+    contador += 1
+    texto = message.text.strip().splitlines()[0]
+    conteudo += f"<li>{message.created_at} {texto}</li>"
+    if contador == 10:
+      break
   return conteudo + "</ul>"
 
 @app.route("/dedoduro")
