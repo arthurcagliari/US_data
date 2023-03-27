@@ -85,7 +85,7 @@ def dedoduro():
   requests.post(f'https://api.telegram.org/bot{TELEGRAM_API_KEY}/sendMessage', data=mensagem)
   return "Mensagem enviada!"
 
-@app.route2("/dedoduro2")
+@app.route("/dedoduro2")
 def dedoduro2():
   sheet.append_row(["Arthur", 33, "Sorocabano", "Jornalista"])
   return "Planilha escrita!"
