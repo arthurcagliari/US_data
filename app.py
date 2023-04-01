@@ -94,7 +94,7 @@ def dedoduro2():
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
   
-    GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
+  GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
   with open("credenciais.json", mode="w") as arquivo:
     arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
   conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
