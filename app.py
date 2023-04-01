@@ -187,18 +187,20 @@ def telegram_bot():
   update = request.json
   chat_id = update["message"]["chat"]["id"]
   message = update["message"]["text"]
+  nova_mensagem = {"chat_id" : chat_id, "text" : message}
+  
+  
   if message in ("/start", "oi", "Olá", "Oi", "oie", "Oie", "oie!", "oieeee", "Olá!", "olá", "Oi!", "Bom dia", "Opa", "Opa!", "opa", "oi!"):
-    texto_resposta = "Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que quer conhecer: \n\n  1 - CPI (índice de preços ao consumidor); \n  2 - PPI (índice de preços ao produtor)"
+    nova_mensagem = {"chat_id" : chat_id, "text" : "Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que quer conhecer: \n\n  1 - CPI (índice de preços ao consumidor); \n  2 - PPI (índice de preços ao produtor)"}
   elif message == "1":
-    texto_resposta = texto_CPI
+     nova_mensagem = {"chat_id" : chat_id, "text" : texto_CPI}
   elif message == "2":
-    texto_resposta = texto_PPI
+     nova_mensagem = {"chat_id" : chat_id, "text" : texto_PPI}
   elif message in ("Obrigado", "obrigado", "obrigado!", "Obrigado!", "Obrigada", "obrigada", "obrigada!", "Obrigada!", "Valeu", "valeu", "valeu!", "Valeu!", "tks", "thanks", "Opa, valeu!"):
-    texto_resposta = "Estamos aqui para isso!"
+     nova_mensagem = {"chat_id" : chat_id, "text" : "Estamos aqui para isso!"}
   elif message == "3":
-    texto_resposta = "Ainda estamos desenvolvendo esta opção. Aguarde!"
+    nova_mensagem = {"chat_id" : chat_id, "text" : "Ainda estamos desenvolvendo esta opção. Aguarde!"}
   else:
-    texto_resposta = "Não entendi essa coordenada. Escreva 'oi' ou 'olá' para conhecer as instruções corretas."
-  nova_mensagem = {"chat_id": chat_id, "text": texto_resposta}
+    nova_mensagem = {"chat_id" : chat_id, "text" : "Não entendi essa coordenada. Escreva 'oi' ou 'olá' para conhecer as instruções corretas."}
   requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
   return "ok"
