@@ -93,9 +93,13 @@ def dedoduro2():
 
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
-  conta = ServiceAccountCredentials.from_json_keyfile_name(GOOGLE_SHEETS_CREDENTIALS)
-  api = gspread.authorize(conta)
-  planilha = api.open_by_key("PLANILHA")
+  
+    GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
+  with open("credenciais.json", mode="w") as arquivo:
+    arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
+  conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
+  api = gspread.authorize(conta) # sheets.new
+  planilha = api.open_by_key("1ZDyxhXlCtCjMbyKvYmMt_8jAKN5JSoZ7x3MqlnoyzAM")
   sheet = planilha.worksheet("US_Data")
   linhas = sheet.get("A3:Q6")
 
