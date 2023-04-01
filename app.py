@@ -104,6 +104,9 @@ def telegram_bot():
 
  #### Condições: 
   ## 1) Para indicar que houve avanço, recuo ou estabilidade no índice de inflação:
+  mes = linhas[1][1]
+  mes2 = linhas[1][2]
+  
   def texto_inf(n):
     if linhas[n][1] > linhas[n][2]:
       verbo_1 = "cresceu"
@@ -137,18 +140,18 @@ def telegram_bot():
     ## 2) Para indicar se houve aceleração ou desaceleração no avanço:
 
     if linhas[n][5] > linhas[n][13]:
-      verbo_3 = (f"acelerando em relação à leitura anterior (já que a variação do mês passado foi de {linhas[n][13]}%)")
+      verbo_3 = (f"acelerando em relação à leitura anterior (já que a variação de {mes2} foi de {linhas[n][13]}%)")
     elif linhas[n][5] < linhas[n][13]:
-      verbo_3 = (f"desacelerando em relação à leitura anterior (já que a variação do mês passado foi de {linhas[n][13]}%)")
+      verbo_3 = (f"desacelerando em relação à leitura anterior (já que a variação de {mes2} foi de {linhas[n][13]}%)")
     else:
       verbo_3 = "mantendo o mesmo tamanho de avanço da leitura anterior"
 
     if linhas[n][11] > linhas[n][15]:
-      verbo_3N = (f"acelerando (uma vez que o avanço do mês passado foi de {linhas[n][15]}%)")
+      verbo_3N = (f"acelerando (uma vez que o avanço de {mes2} foi de {linhas[n][15]}%)")
     elif linhas[n][11] < linhas[n][15]:
-      verbo_3N = (f"desacelerando (uma vez que o avanço do mês passado foi de {linhas[n][15]}%)")
+      verbo_3N = (f"desacelerando (uma vez que o avanço de {mes2} foi de {linhas[n][15]}%)")
     else:
-      verbo_3N = "mantendo o mesmo ritmo de avanço do mes passado"
+      verbo_3N = f"mantendo o mesmo ritmo de avanço de {mes2}"
 
     #Mesma condição, mas para 12 meses:
 
@@ -173,11 +176,10 @@ def telegram_bot():
       dado_principal = "O índice de preços ao produtor (PPI, na sigla em inglês)"
       dado_secundario = "PPI"
       
-    mes = linhas[1][1]
     dado_inflacao = f'''{dado_principal} nos Estados Unidos {verbo_1} {linhas[n][5]}% em {mes} na variação mensal, {verbo_3},\
-  conforme apontou o Departamento do Trabalho em nota. No acumulado em 12 meses, o indicador de {mes} {verbo_2} {linhas[n][6]}%, {verbo_4}. 
-  
-  Em relação ao núcleo do índice (que exclui as variações de alimento e energia), o {dado_secundario} {verbo_1N} {linhas[n][11]}% em {mes}\
+  conforme apontou o Departamento do Trabalho em nota. No acumulado em 12 meses, o indicador de {mes} {verbo_2} {linhas[n][6]}%, {verbo_4}.
+ 
+ Em relação ao núcleo do índice (que exclui as variações de alimento e energia), o {dado_secundario} {verbo_1N} {linhas[n][11]}% em {mes}\
   na variação mensal, {verbo_3N}. No acumulado em 12 meses, o núcleo do indicador de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
 
     return dado_inflacao
@@ -194,7 +196,7 @@ def telegram_bot():
   
   
   if message in ("/start", "oi", "Olá", "Oi", "oie", "Oie", "oie!", "oieeee", "Olá!", "olá", "Oi!", "Bom dia", "Opa", "Opa!", "opa", "oi!"):
-    nova_mensagem = {"chat_id" : chat_id, "text" : "Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que quer conhecer: \n\n  1 - CPI (índice de preços ao consumidor); \n  2 - PPI (índice de preços ao produtor)"}
+    nova_mensagem = {"chat_id" : chat_id, "text" : "Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que você quer conhecer: \n\n  1 - CPI (índice de preços ao consumidor); \n  2 - PPI (índice de preços ao produtor)"}
   elif message == "1":
      nova_mensagem = {"chat_id" : chat_id, "text" : texto_CPI}
   elif message == "2":
