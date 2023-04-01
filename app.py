@@ -172,7 +172,8 @@ def telegram_bot():
     elif n == 3:
       dado_principal = "O índice de preços ao produtor (PPI, na sigla em inglês)"
       dado_secundario = "PPI"
-
+      
+    mes = linhas[1][1]
     dado_inflacao = f'{dado_principal} nos Estados \
   Unidos {verbo_1} {linhas[n][5]}% em {mes} na variação mensal, {verbo_3}, \
   conforme apontou o Departamento do Trabalho em nota. No acumulado em 12 meses, o indicador \
