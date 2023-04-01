@@ -92,9 +92,20 @@ def dedoduro2():
 
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
+  
+  GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
+  with open("credenciais.json", mode="w") as arquivo:
+    arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
+  conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
+  api = gspread.authorize(conta) # sheets.new
+  planilha = api.open_by_key("1ZDyxhXlCtCjMbyKvYmMt_8jAKN5JSoZ7x3MqlnoyzAM")
+  sheet = planilha.worksheet("US_Data")
+  linhas = sheet.get("A5")
+  
+  
   update = request.json
   chat_id = update["message"]["chat"]["id"]
   message = update["message"]["text"]
-  nova_mensagem = {"chat_id": chat_id, "text": 'piu piu & franjola'}
+  nova_mensagem = {"chat_id": chat_id, "text": linhas}
   requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
   return "ok"
