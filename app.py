@@ -206,7 +206,7 @@ de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
   elif message in ("Obrigado", "obrigado", "obrigado!", "Obrigado!", "Obrigada", "obrigada", "obrigada!", "Obrigada!", "Valeu", "valeu", "valeu!", "Valeu!", "tks", "thanks", "Opa, valeu!"):
      nova_mensagem = {"chat_id" : chat_id, "text" : "Estamos aqui para isso!"}
   elif message == "3":
-    nova_mensagem = {"chat_id" : chat_id, "text" : f'{payroll_text} \n\n Digite "0" para voltar ao menu inicial.'}
+    nova_mensagem = {"chat_id" : chat_id, "text" : f'payroll_text \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "4":
     nova_mensagem = {"chat_id" : chat_id, "text" : "Ainda estamos desenvolvendo esta opção. Aguarde!"}
   else:
