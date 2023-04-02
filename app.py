@@ -212,7 +212,8 @@ de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
     {linhas[6][7]}%, {adjetivo_1}. Em relação ao ganho salarial, houve um aumento de {linhas[6][10]}% em {linhas[9][2]}, enquanto\
     no acumulado em 12 meses o crescimento do salário foi de {linhas[8][10]}%.'''
 
-    return payroll_text
+    return payroll_funcao
+  payroll_text = payroll()
   
   #### ajustando as respostas de acordo com os conteúdos explorados até agora
   update = request.json
@@ -221,16 +222,16 @@ de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
   nova_mensagem = {"chat_id" : chat_id, "text" : message}
   
   
-  if message in ("/start", "oi", "Olá", "Oi", "oie", "Oie", "oie!", "oieeee", "Olá!", "olá", "Oi!", "Bom dia", "Opa", "Opa!", "opa", "oi!"):
+  if message in ("/start", "oi", "Olá", "Oi", "oie", "Oie", "oie!", "oieeee", "Olá!", "olá", "Oi!", "Bom dia", "Opa", "Opa!", "opa", "oi!", "0", 0):
     nova_mensagem = {"chat_id" : chat_id, "text" : "Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que você quer conhecer: \n\n  1 - CPI (índice de preços ao consumidor); \n  2 - PPI (índice de preços ao produtor)"}
   elif message == "1":
      nova_mensagem = {"chat_id" : chat_id, "text" : f'{texto_CPI} \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "2":
-     nova_mensagem = {"chat_id" : chat_id, "text" : texto_PPI}
+     nova_mensagem = {"chat_id" : chat_id, "text" : f'{texto_PPI} \n\n Digite "0" para voltar ao menu inicial.'}
   elif message in ("Obrigado", "obrigado", "obrigado!", "Obrigado!", "Obrigada", "obrigada", "obrigada!", "Obrigada!", "Valeu", "valeu", "valeu!", "Valeu!", "tks", "thanks", "Opa, valeu!"):
      nova_mensagem = {"chat_id" : chat_id, "text" : "Estamos aqui para isso!"}
   elif message == "3":
-    nova_mensagem = {"chat_id" : chat_id, "text" : payroll_text}
+    nova_mensagem = {"chat_id" : chat_id, "text" : f'{payroll_text} \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "4":
     nova_mensagem = {"chat_id" : chat_id, "text" : "Ainda estamos desenvolvendo esta opção. Aguarde!"}
   else:
