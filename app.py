@@ -190,31 +190,6 @@ de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
   texto_PPI = texto_inf(3)
   
   #### aqui começa o código do payroll
-  
-  def payroll():
-    if linhas[7][1] > linhas[7][2]:
-      substantivo_1 = "alta"
-    elif linhas[7][1] < linhas[7][2]:
-      substantivo_1 = "redução"
-    else:
-      substantivo_1 = "mantendo o mesmo tamanho de avanço"
-
-    ### definição do adjetivo
-    if linhas[7][6] > linhas[7][7]:
-        adjetivo_1 = (f"maior do que a leitura anterior, de {linhas[7][7]}%")
-    elif linhas[7][6] < linhas[7][7]:
-        adjetivo_1= (f"menor do que a leitura anterior, de {linhas[7][7]}%")
-    else:
-        adjetivo_1 = "igual à leitura anterior"
-
-    payroll_text = f'''O total de vagas de trabalho geradas no mês de {linhas [9][1]} nos Estados Unidos foi de {linhas[7][3]} mil, uma {substantivo_1} \
-    na criação de postos na relação com o mês anterior, que foi de {linhas[4][8]} mil. Já a taxa de desemprego no mês foi de\
-    {linhas[7][6]}%, {adjetivo_1}. Em relação ao ganho salarial, houve um aumento de {linhas[10][6]}% em {linhas[9][1]}, enquanto\
-    no acumulado em 12 meses o crescimento do salário foi de {linhas[10][8]}%.'''
-
-    return payroll_funcao
-  payroll_text = payroll()
-  
   #### ajustando as respostas de acordo com os conteúdos explorados até agora
   update = request.json
   chat_id = update["message"]["chat"]["id"]
