@@ -208,9 +208,11 @@ de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
         adjetivo_1 = "igual à leitura anterior"
 
     payroll_funcao = f'''O total de vagas de trabalho geradas no mês de {linhas [9][1]} nos Estados Unidos foi de {linhas[7][4]} mil, uma {substantivo_1} \
-  na criação de postos na relação com o mês anterior, que foi de {linhas[7][5]} mil. Já a taxa de desemprego no mês foi de \
-  {linhas[7][6]}%, {adjetivo_1}. Em relação ao ganho salarial, houve um aumento de {linhas[10][6]}% em {linhas[9][1]}, enquanto\
-  no acumulado em 12 meses o crescimento do salário foi de {linhas[10][8]}%.'''
+na criação de postos na relação com o mês anterior, que foi de {linhas[7][5]} mil. Já a taxa de desemprego no mês foi de \
+{linhas[7][6]}%, {adjetivo_1}. 
+
+Em relação ao ganho salarial, houve um aumento de {linhas[10][6]}% em {linhas[9][1]}, enquanto \
+no acumulado em 12 meses o crescimento do salário foi de {linhas[10][8]}%.'''
 
     return payroll_funcao
   payroll_text = payroll()
@@ -223,7 +225,7 @@ de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
   
   
   if message in ("/start", "oi", "Olá", "Oi", "oie", "Oie", "oie!", "oieeee", "Olá!", "olá", "Oi!", "Bom dia", "Opa", "Opa!", "opa", "oi!", "0", 0):
-    nova_mensagem = {"chat_id" : chat_id, "text" : "Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que você quer conhecer: \n\n  1 - CPI (índice de preços ao consumidor); \n  2 - PPI (índice de preços ao produtor)"}
+    nova_mensagem = {"chat_id" : chat_id, "text" : "Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que você quer conhecer: \n\n  1 - CPI (índice de preços ao consumidor); \n  2 - PPI (índice de preços ao produtor); \n  3 - Payroll (dados do mercado de trabalho)"}
   elif message == "1":
      nova_mensagem = {"chat_id" : chat_id, "text" : f'{texto_CPI} \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "2":
