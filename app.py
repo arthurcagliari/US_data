@@ -224,7 +224,7 @@ no acumulado em 12 meses o crescimento do salário foi de {linhas[10][8]}%.'''
   nova_mensagem = {"chat_id" : chat_id, "text" : message}
   
   
-  if message in ("/start", "oi", "Olá", "Oi", "oie", "Oie", "oie!", "oieeee", "Olá!", "olá", "Oi!", "Bom dia", "Opa", "Opa!", "opa", "oi!", "0", 0):
+  if message in ("/start", "oi", "Olá", "ola", "Ola", "Oi", "oie", "Oie", "oie!", "oieeee", "Olá!", "olá", "Oi!", "Bom dia", "Opa", "Opa!", "opa", "oi!", "0", 0):
     nova_mensagem = {"chat_id" : chat_id, "text" : "Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que você quer conhecer: \n\n  1 - CPI (índice de preços ao consumidor); \n  2 - PPI (índice de preços ao produtor); \n  3 - Payroll (dados do mercado de trabalho)"}
   elif message == "1":
      nova_mensagem = {"chat_id" : chat_id, "text" : f'{texto_CPI} \n\n Digite "0" para voltar ao menu inicial.'}
