@@ -104,10 +104,18 @@ def telegram_bot():
 
  #### Condições: 
   ## 1) Para indicar que houve avanço, recuo ou estabilidade no índice de inflação:
-  mes = linhas[1][1]
-  mes2 = linhas[1][2]
+  
   
   def texto_inf(n):
+    
+    if n == 2:
+    mes = linhas[1][1]
+    mes2 = linhas[1][2]
+    
+    if n == 5:
+    mes = linhas[4][1]
+    mes2 = linhas[4][2]
+    
     if float(linhas[n][5]) > 0.0:
       verbo_1 = f"cresceu {linhas[n][5]}%"
     if float(linhas[n][5]) < 0.0:
@@ -172,7 +180,7 @@ def telegram_bot():
     if n == 2:
       dado_principal = "O índice de preços ao consumidor (CPI, na sigla em inglês)"
       dado_secundario = "CPI"
-    elif n == 3:
+    elif n == 5:
       dado_principal = "O índice de preços ao produtor (PPI, na sigla em inglês)"
       dado_secundario = "PPI"
       
@@ -187,32 +195,32 @@ de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
   
   #### definindo as variáveis com os textos de inflação
   texto_CPI = texto_inf(2)
-  texto_PPI = texto_inf(3)
+  texto_PPI = texto_inf(5)
   
   #### aqui começa o código do payroll
   
   def payroll():
-    if linhas[7][1] > linhas[7][2]:
+    if linhas[9][1] > linhas[9][2]:
       substantivo_1 = "alta"
-    elif linhas[7][1] < linhas[7][2]:
+    elif linhas[9][1] < linhas[9][2]:
       substantivo_1 = "redução"
     else:
       substantivo_1 = "mantendo o mesmo tamanho de avanço"
 
       ### definição do adjetivo
-    if linhas[7][6] > linhas[7][7]:
-        adjetivo_1 = f"maior do que a leitura anterior, de {linhas[7][7]}%"
-    elif linhas[7][6] < linhas[7][7]:
-        adjetivo_1= f"menor do que a leitura anterior, de {linhas[7][7]}%"
+    if linhas[9][6] > linhas[9][7]:
+        adjetivo_1 = f"maior do que a leitura anterior, de {linhas[9][7]}%"
+    elif linhas[9][6] < linhas[9][7]:
+        adjetivo_1= f"menor do que a leitura anterior, de {linhas[9][7]}%"
     else:
         adjetivo_1 = "igual à leitura anterior"
 
-    payroll_funcao = f'''O total de vagas de trabalho geradas no mês de {linhas [9][1]} nos Estados Unidos foi de {linhas[7][4]} mil, uma {substantivo_1} \
-na criação de postos na relação com o mês anterior, que foi de {linhas[7][5]} mil. Já a taxa de desemprego no mês foi de \
-{linhas[7][6]}%, {adjetivo_1}. 
+    payroll_funcao = f'''O total de vagas de trabalho geradas no mês de {linhas [7][1]} nos Estados Unidos foi de {linhas[9][4]} mil, uma {substantivo_1} \
+na criação de postos na relação com o mês anterior, que foi de {linhas[9][5]} mil. Já a taxa de desemprego no mês foi de \
+{linhas[9][6]}%, {adjetivo_1}. 
 
-Em relação ao ganho salarial, houve um aumento de {linhas[10][6]}% em {linhas[9][1]}, enquanto \
-no acumulado em 12 meses o crescimento do salário foi de {linhas[10][8]}%.'''
+Em relação ao ganho salarial, houve um aumento de {linhas[13][6]}% em {linhas[11][1]}, enquanto \
+no acumulado em 12 meses o crescimento do salário foi de {linhas[13][8]}%.'''
 
     return payroll_funcao
   payroll_text = payroll()
@@ -233,7 +241,7 @@ no acumulado em 12 meses o crescimento do salário foi de {linhas[10][8]}%.'''
   elif message in ("Obrigado", "obrigado", "obrigado!", "Obrigado!", "Obrigada", "obrigada", "obrigada!", "Obrigada!", "Valeu", "valeu", "valeu!", "Valeu!", "tks", "thanks", "Opa, valeu!"):
      nova_mensagem = {"chat_id" : chat_id, "text" : "Estamos aqui para isso!"}
   elif message == "3":
-    nova_mensagem = {"chat_id" : chat_id, "text" : f'{payroll_text} \n\n Digite "0" para voltar ao menu inicial.'}
+    nova_mensagem = {"chat_id" : chat_id, "text" : f'{payroll_text} \n\n -/-/-/-/-/-/-/-/-/-/-/-/ \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "4":
     nova_mensagem = {"chat_id" : chat_id, "text" : "Ainda estamos desenvolvendo esta opção. Aguarde!"}
   else:
