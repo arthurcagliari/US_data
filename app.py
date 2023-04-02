@@ -109,12 +109,12 @@ def telegram_bot():
   def texto_inf(n):
     
     if n == 2:
-    mes = linhas[1][1]
-    mes2 = linhas[1][2]
+      mes = linhas[1][1]
+      mes2 = linhas[1][2]
     
     if n == 5:
-    mes = linhas[4][1]
-    mes2 = linhas[4][2]
+      mes = linhas[4][1]
+      mes2 = linhas[4][2]
     
     if float(linhas[n][5]) > 0.0:
       verbo_1 = f"cresceu {linhas[n][5]}%"
