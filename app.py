@@ -100,7 +100,7 @@ def telegram_bot():
   api = gspread.authorize(conta) # sheets.new
   planilha = api.open_by_key("1S_ztKSv_gjalYZCjrb5CvU1fQMjHEfLw1k9i50HomF8")
   sheet = planilha.worksheet("US_Data")
-  linhas = sheet.get("A3:Q6")
+  linhas = sheet.get("A3:Q20")
 
  #### Condições: 
   ## 1) Para indicar que houve avanço, recuo ou estabilidade no índice de inflação:
