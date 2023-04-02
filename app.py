@@ -177,7 +177,7 @@ def telegram_bot():
       dado_secundario = "PPI"
       
     dado_inflacao = f'''{dado_principal} nos Estados Unidos {verbo_1} em {mes} na variação mensal, {verbo_3}, \
-conforme apontou o Departamento do Trabalho. No acumulado em 12 meses, o indicador de {mes} {verbo_2} {linhas[n][6]}%, {verbo_4}.
+conforme apontou o Departamento do Trabalho americano. No acumulado em 12 meses, o indicador de {mes} {verbo_2} {linhas[n][6]}%, {verbo_4}.
  
 Em relação ao núcleo do índice (que exclui as variações de alimento e energia), o {dado_secundario} {verbo_1N} em {mes} \
 na variação mensal, {verbo_3N}. No acumulado em 12 meses, o núcleo do indicador \
