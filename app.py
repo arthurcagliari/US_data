@@ -108,17 +108,17 @@ def telegram_bot():
   mes2 = linhas[1][2]
   
   def texto_inf(n):
-    if linhas[n][1] > linhas[n][2]:
-      verbo_1 = "cresceu"
-    elif linhas[n][1] < linhas[n][2]:
-      verbo_1 = "retraiu"
+    if float(linhas[n][5]) > 0.0:
+      verbo_1 = f"cresceu {linha[n][5]}%"
+    if float(linhas[n][5]) < 0.0:
+      verbo_1 = f"retraiu {linha[n][5]}%"
     else:
       verbo_1 = "ficou estável"
 
-    if linhas[n][7] > linhas[n][8]:
-      verbo_1N = "exibiu alta"
-    elif linhas[n][7] < linhas[n][8]:
-      verbo_1N = "registrou queda"
+    if float(linhas[n][11]) > 0.0:
+      verbo_1N = f"exibiu alta de {linhas[n][11]}%"
+    elif float(linhas[n][11]) < 0.0:
+      verbo_1N = f"registrou queda de {linhas[n][11]}%"
     else:
       verbo_1N = "ficou estável"
 
@@ -176,11 +176,12 @@ def telegram_bot():
       dado_principal = "O índice de preços ao produtor (PPI, na sigla em inglês)"
       dado_secundario = "PPI"
       
-    dado_inflacao = f'''{dado_principal} nos Estados Unidos {verbo_1} {linhas[n][5]}% em {mes} na variação mensal, {verbo_3},\
-conforme apontou o Departamento do Trabalho em nota. No acumulado em 12 meses, o indicador de {mes} {verbo_2} {linhas[n][6]}%, {verbo_4}.
+    dado_inflacao = f'''{dado_principal} nos Estados Unidos {verbo_1} em {mes} na variação mensal, {verbo_3},
+conforme apontou o Departamento do Trabalho. No acumulado em 12 meses, o indicador de {mes} {verbo_2} {linhas[n][6]}%, {verbo_4}.
  
-Em relação ao núcleo do índice (que exclui as variações de alimento e energia), o {dado_secundario} {verbo_1N} {linhas[n][11]}% em {mes}\
-na variação mensal, {verbo_3N}. No acumulado em 12 meses, o núcleo do indicador (que exclui as variações de alimentos e energia) de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
+Em relação ao núcleo do índice (que exclui as variações de alimento e energia), o {dado_secundario} {verbo_1N} em {mes}
+na variação mensal, {verbo_3N}. No acumulado em 12 meses, o núcleo do indicador (que exclui as variações de alimentos e energia) 
+de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
 
     return dado_inflacao
   
