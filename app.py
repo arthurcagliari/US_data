@@ -199,7 +199,7 @@ de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
   if message in ("/start", "oi", "Olá", "Oi", "oie", "Oie", "oie!", "oieeee", "Olá!", "olá", "Oi!", "Bom dia", "Opa", "Opa!", "opa", "oi!"):
     nova_mensagem = {"chat_id" : chat_id, "text" : "Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que você quer conhecer: \n\n  1 - CPI (índice de preços ao consumidor); \n  2 - PPI (índice de preços ao produtor)"}
   elif message == "1":
-     nova_mensagem = {"chat_id" : chat_id, "text" : f'{texto_CPI} \n\n Digite '0' para voltar ao menu inicial.'}
+     nova_mensagem = {"chat_id" : chat_id, "text" : f'{texto_CPI} \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "2":
      nova_mensagem = {"chat_id" : chat_id, "text" : texto_PPI}
   elif message in ("Obrigado", "obrigado", "obrigado!", "Obrigado!", "Obrigada", "obrigada", "obrigada!", "Obrigada!", "Valeu", "valeu", "valeu!", "Valeu!", "tks", "thanks", "Opa, valeu!"):
