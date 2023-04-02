@@ -188,7 +188,32 @@ de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
   #### definindo as variáveis com os textos de inflação
   texto_CPI = texto_inf(2)
   texto_PPI = texto_inf(3)
+  
+  #### aqui começa o código do payroll
+  
+  def payroll():
+    if linhas[1][7] > linhas[2][7]:
+      substantivo_1 = "alta"
+    elif linhas[1][7] < linhas[2][7]:
+      substantivo_1 = "redução"
+    else:
+      substantivo_1 = "mantendo o mesmo tamanho de avanço"
 
+    ### definição do adjetivo
+    if linhas[6][7] > linhas[7][7]:
+        adjetivo_1 = (f"maior do que a leitura anterior, de {linhas[7][7]}%")
+    elif linhas[6][7] < linhas[7][7]:
+        adjetivo_1= (f"menor do que a leitura anterior, de {linhas[7][7]}%")
+    else:
+        adjetivo_1 = "igual à leitura anterior"
+
+    payroll_text = f'''O total de vagas de trabalho geradas no mês de {linhas [9][2]} nos Estados Unidos foi de {linhas[3][7]} mil, uma {substantivo_1} \
+    na criação de postos na relação com o mês anterior, que foi de {linhas[4][7]} mil. Já a taxa de desemprego no mês foi de\
+    {linhas[6][7]}%, {adjetivo_1}. Em relação ao ganho salarial, houve um aumento de {linhas[6][10]}% em {linhas[9][2]}, enquanto\
+    no acumulado em 12 meses o crescimento do salário foi de {linhas[8][10]}%.'''
+
+    return payroll_text
+  
   #### ajustando as respostas de acordo com os conteúdos explorados até agora
   update = request.json
   chat_id = update["message"]["chat"]["id"]
@@ -205,6 +230,8 @@ de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
   elif message in ("Obrigado", "obrigado", "obrigado!", "Obrigado!", "Obrigada", "obrigada", "obrigada!", "Obrigada!", "Valeu", "valeu", "valeu!", "Valeu!", "tks", "thanks", "Opa, valeu!"):
      nova_mensagem = {"chat_id" : chat_id, "text" : "Estamos aqui para isso!"}
   elif message == "3":
+    nova_mensagem = {"chat_id" : chat_id, "text" : payroll_text}
+  elif message == "4":
     nova_mensagem = {"chat_id" : chat_id, "text" : "Ainda estamos desenvolvendo esta opção. Aguarde!"}
   else:
     nova_mensagem = {"chat_id" : chat_id, "text" : "Aguarde, estou pensando ainda ou não entendi essa coordenada. Se eu demorar, escreva 'oi' ou 'olá' para conhecer as instruções corretas."}
