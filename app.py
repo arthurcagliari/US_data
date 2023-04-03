@@ -252,7 +252,7 @@ no acumulado em 12 meses o crescimento do salário foi de {linhas[13][8]}%.'''
      nova_mensagem = {"chat_id" : chat_id, "text" : f'{livro_bege} \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "5":
     nova_mensagem = {"chat_id" : chat_id, "text" : "Ainda estamos desenvolvendo esta opção. Aguarde!"}
-  elif message in ("tchau", "Tchau", "xau", "Xau")
+  elif message in ("tchau", "Tchau", "xau", "Xau"):
     nova_mensagem = {"chat_id" : chat_id, "text" : "Tchau, tchau! Até mais!"}
   else:
     nova_mensagem = {"chat_id" : chat_id, "text" : "Aguarde, estou pensando ainda ou não entendi essa coordenada. Se eu demorar, escreva 'oi' ou 'olá' para conhecer as instruções corretas."}
