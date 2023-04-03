@@ -228,8 +228,10 @@ no acumulado em 12 meses o crescimento do salário foi de {linhas[13][8]}%.'''
   #### ajustando o conteúdo do Livro Bege
   
   def beige_book():
-    livro_bege = print(linhas[15][1])
-    return livro_bege
+    livro_texto = print(linhas[15][1])
+    return livro_texto
+  
+  livro_bege = beige_book()
   
   #### ajustando as respostas de acordo com os conteúdos explorados até agora
   update = request.json
