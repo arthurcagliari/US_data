@@ -226,13 +226,8 @@ no acumulado em 12 meses o crescimento do salário foi de {linhas[13][8]}%.'''
   payroll_text = payroll()
   
   #### ajustando o conteúdo do Livro Bege
-  
-  def beige_book():
-    livro_texto = linhas[15][1]
-    return print(livro_texto)
-  
-  livro_bege = beige_book()
-  
+  livro_bege = linhas[15][1]
+    
   #### ajustando as respostas de acordo com os conteúdos explorados até agora
   update = request.json
   chat_id = update["message"]["chat"]["id"]
@@ -244,8 +239,8 @@ no acumulado em 12 meses o crescimento do salário foi de {linhas[13][8]}%.'''
     nova_mensagem = {"chat_id" : chat_id, "text" : f'''Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que você quer conhecer: \n 
     1 - CPI (índice de preços ao consumidor);
     2 - PPI (índice de preços ao produtor); 
-    3 - Payroll (dados do mercado de trabalho);\n  
-    4 - Livro Bege\n\n'''}
+    3 - Payroll (mercado de trabalho);  
+    4 - Livro Bege'''}
   elif message == "1":
      nova_mensagem = {"chat_id" : chat_id, "text" : f'{texto_CPI} \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "2":
