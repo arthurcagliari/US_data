@@ -225,6 +225,12 @@ no acumulado em 12 meses o crescimento do salário foi de {linhas[13][8]}%.'''
     return payroll_funcao
   payroll_text = payroll()
   
+  #### ajustando o conteúdo do Livro Bege
+  
+  def beige_book():
+    livro_bege = print(linhas[15][1])
+    return livro_bege
+  
   #### ajustando as respostas de acordo com os conteúdos explorados até agora
   update = request.json
   chat_id = update["message"]["chat"]["id"]
@@ -243,6 +249,8 @@ no acumulado em 12 meses o crescimento do salário foi de {linhas[13][8]}%.'''
   elif message == "3":
     nova_mensagem = {"chat_id" : chat_id, "text" : f'{payroll_text} \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "4":
+     nova_mensagem = {"chat_id" : chat_id, "text" : f'{livro_bege} \n\n Digite "0" para voltar ao menu inicial.'}
+  elif message == "5":
     nova_mensagem = {"chat_id" : chat_id, "text" : "Ainda estamos desenvolvendo esta opção. Aguarde!"}
   elif message in ("tchau", "Tchau", "xau", "Xau")
     nova_mensagem = {"chat_id" : chat_id, "text" : "Tchau, tchau! Até mais!"}
