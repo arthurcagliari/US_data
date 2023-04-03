@@ -228,8 +228,8 @@ no acumulado em 12 meses o crescimento do salário foi de {linhas[13][8]}%.'''
   #### ajustando o conteúdo do Livro Bege
   
   def beige_book():
-    livro_texto = print(linhas[15][1])
-    return livro_texto
+    livro_texto = linhas[15][1]
+    return print(livro_texto)
   
   livro_bege = beige_book()
   
@@ -241,11 +241,11 @@ no acumulado em 12 meses o crescimento do salário foi de {linhas[13][8]}%.'''
   
   
   if message in ("/start", "oi", "Olá", "ola", "Ola", "Oi", "oie", "Oie", "oie!", "oieeee", "Olá!", "olá", "Oi!", "Bom dia", "Opa", "Opa!", "opa", "oi!", "0", 0):
-    nova_mensagem = {"chat_id" : chat_id, "text" : f'''Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que você quer conhecer: \n\n  
-    1 - CPI (índice de preços ao consumidor); \n  
-    2 - PPI (índice de preços ao produtor); \n  
+    nova_mensagem = {"chat_id" : chat_id, "text" : f'''Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que você quer conhecer: \n 
+    1 - CPI (índice de preços ao consumidor);
+    2 - PPI (índice de preços ao produtor); 
     3 - Payroll (dados do mercado de trabalho);\n  
-    4 - Livro Bege (resumo por Inteligência Artificial)'''}
+    4 - Livro Bege\n\n'''}
   elif message == "1":
      nova_mensagem = {"chat_id" : chat_id, "text" : f'{texto_CPI} \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "2":
@@ -253,7 +253,7 @@ no acumulado em 12 meses o crescimento do salário foi de {linhas[13][8]}%.'''
   elif message in ("Obrigado", "obrigado", "obrigado!", "Obrigado!", "Obrigada", "obrigada", "obrigada!", "Obrigada!", "Valeu", "valeu", "valeu!", "Valeu!", "tks", "thanks", "Opa, valeu!"):
      nova_mensagem = {"chat_id" : chat_id, "text" : "Estamos aqui para isso!"}
   elif message == "3":
-    nova_mensagem = {"chat_id" : chat_id, "text" : f'{payroll_text} \n\n Digite "0" para voltar ao menu inicial.'}
+    nova_mensagem = {"chat_id" : chat_id, "text" : f'{payroll_text} \n\n (Este texto foi resumido e redigido por uma inteligência artificial) \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "4":
      nova_mensagem = {"chat_id" : chat_id, "text" : f'{livro_bege} \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "5":
