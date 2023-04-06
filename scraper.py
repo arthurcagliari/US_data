@@ -1,4 +1,8 @@
 import gspread
+import os
+import requests
+from flask import Flask, request
+from oauth2client.service_account import ServiceAccountCredentials
 
 GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
 with open("credenciais.json", mode="w") as arquivo:
