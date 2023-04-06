@@ -1,3 +1,7 @@
+!pip install gspread oauth2client
+!pip install openai==0.27
+!pip install json
+
 import datetime
 import getpass
 import gspread
