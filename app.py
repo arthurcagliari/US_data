@@ -137,7 +137,7 @@ def telegram_bot():
   elif message == "5":
     nova_mensagem = {"chat_id" : chat_id, "text" : "Ainda estamos desenvolvendo esta opção. Aguarde!"}
   elif message in ("tchau", "Tchau", "xau", "Xau"):
-    nova_mensagem = {"chat_id" : chat_id, "text" : "Tchau, tchau! Até mais!"}
+    nova_mensagem = {"chat_id" : chat_id, "text" : "Tchau. Até mais!"}
   else:
     nova_mensagem = {"chat_id" : chat_id, "text" : "Aguarde, estou pensando ainda ou não entendi essa coordenada. Se eu demorar, escreva 'oi' ou 'olá' para conhecer as instruções corretas."}
   requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
