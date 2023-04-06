@@ -13,6 +13,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from tchan import ChannelScraper
 from scraper import payroll
 from scraper import texto_inf
+from scraper_US import CPI_PPI, lista_vagas, lista_ganho, mes
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
@@ -61,6 +62,45 @@ def raspagem():
     output.write (x.get_string())
     output.close() 
    dados = p.json()
+  
+  ### definindo os meses de cada dado
+  
+  #p = 0 ---> dado do CPI
+  #p = 4 ---> dado do PPI
+  #p = 8 ---> dado do payroll
+  
+  mes0CPI = mes(0,0)
+  mes1CPI = mes(0,1)
+  mes2CPI = mes(0,2)
+
+  mes0PPI = mes(4,0)
+  mes1PPI = mes(4,1)
+  mes2PPI = mes(4,2)
+
+  mes0Pay = mes(8,0)
+  mes1Pay = mes(8,1)
+  mes2Pay = mes(8,2)
+  
+  #### O código abaixo limpa e preenche a minha planilha
+  start_row = 3
+  end_row = 25
+  start_col = 'A'
+  end_col = 'Q'
+  range_string = f'{start_col}{start_row}:{end_col}{end_row}'
+  cell_list = sheet.range(range_string)
+  for cell in cell_list:
+      cell.value = ''
+  sheet.update_cells(cell_list)
+
+  lista_titulos = ["","dado bruto atual", "dado bruto anterior", "dado bruto não ajustado", "dado bruto há 12 meses","mensal (%)","anual (%)", "núcleo bruto", "núcleo bruto anterior", "núcleo bruto não ajustado", "núcleo bruto há 12 meses","núcleo/mensal (%)", "núcleo/anual (%)", "último mensal (%)", "último anual (%)", "último mensal núcleo (%)", "último anual núcleo (%)"]
+  lista_meses_CPI = ["mês referência", mes0CPI, mes1CPI, mes0CPI, mes0CPI, mes0CPI, mes0CPI, mes0CPI, mes1CPI, mes0CPI, mes0CPI, mes0CPI, mes0CPI, mes1CPI, mes1CPI, mes1CPI, mes1CPI]
+  lista_meses_PPI = ["mês referência", mes0PPI, mes1PPI, mes0PPI, mes0PPI, mes0PPI, mes0PPI, mes0PPI, mes1PPI, mes0PPI, mes0PPI, mes0PPI, mes0PPI, mes1PPI, mes1PPI, mes1PPI, mes1PPI]
+  lista_vazia = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+  lista_payroll = ["payroll (merc. de trabalho)", "dado burto atual", "dado br. mês anterior", "dado br. dois meses antes", "total de vagas, em milhares", "total de vagas mês anterior, em milhares", "taxa de desemprego atual", "taxa de desemprego anterior"]
+  lista_meses_pay = ["mês referência", mes0Pay, mes1Pay, mes2Pay, mes0Pay, mes1Pay, mes0Pay, mes1Pay, mes0Pay, mes1Pay]
+  lista_payroll2 = ["ganho salarial", "ganho atual bruto", "ganho anterior bruto", "ganho há dois meses bruto", "ganho bruto 12 meses", "ganho bruto 13 meses", "ganho perc. atual", "ganho perc. anterior", "ganho acu. 12", "ganho acu. 12 anterior"]
+
+  sheet.append_rows([lista_titulos, lista_meses_CPI, CPI_PPI(0,1,2,3), lista_vazia, lista_meses_PPI, CPI_PPI(4,5,6,7), lista_vazia, lista_meses_pay, lista_payroll, lista_vagas, lista_vazia, lista_meses_pay, lista_payroll2, lista_ganho])
   return "right"
 
 @app.route("/telegram-bot", methods=["POST"])
