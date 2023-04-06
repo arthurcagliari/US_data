@@ -30,7 +30,7 @@ app = Flask(__name__)
 def index():
   return "Olá, esse é um site de teste."
 
-@app.route("/raspagem_US")
+@app.route("/raspagem")
 def raspagem():
   GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
   with open("credenciais.json", mode="w") as arquivo:
