@@ -91,6 +91,11 @@ def raspagem():
   for cell in cell_list:
       cell.value = ''
   sheet.update_cells(cell_list)
+  
+  json.dumps(str(CPI_PPI))
+  json.dumps(str(lista_vagas))
+  json.dumps(str(lista_vagas))
+  json.dumps(str(mes))
 
   lista_titulos = ["","dado bruto atual", "dado bruto anterior", "dado bruto não ajustado", "dado bruto há 12 meses","mensal (%)","anual (%)", "núcleo bruto", "núcleo bruto anterior", "núcleo bruto não ajustado", "núcleo bruto há 12 meses","núcleo/mensal (%)", "núcleo/anual (%)", "último mensal (%)", "último anual (%)", "último mensal núcleo (%)", "último anual núcleo (%)"]
   lista_meses_CPI = ["mês referência", mes0CPI, mes1CPI, mes0CPI, mes0CPI, mes0CPI, mes0CPI, mes0CPI, mes1CPI, mes0CPI, mes0CPI, mes0CPI, mes0CPI, mes1CPI, mes1CPI, mes1CPI, mes1CPI]
