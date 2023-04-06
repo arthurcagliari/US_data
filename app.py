@@ -1,5 +1,5 @@
-!pip install gspread oauth2client
-!pip install openai==0.27
+pip install gspread oauth2client
+pip install openai==0.27
 
 import datetime
 import gspread
