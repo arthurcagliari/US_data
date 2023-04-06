@@ -131,7 +131,8 @@ def telegram_bot():
   elif message == "2":
      nova_mensagem = {
        "chat_id" : chat_id, 
-       "text" : f'<b>CPI dos EUA</B> \n\n {texto_PPI} \n\n Digite "0" para voltar ao menu inicial.'}
+       "text" : f'<b>CPI dos EUA</B> \n\n {texto_PPI} \n\n Digite "0" para voltar ao menu inicial.',
+       "parse_mode": "HTML"}
   elif message in ("Obrigado", "obrigado", "obrigado!", "Obrigado!", "Obrigada", "obrigada", "obrigada!", "Obrigada!", "Valeu", "valeu", "valeu!", "Valeu!", "tks", "thanks", "Opa, valeu!"):
      nova_mensagem = {
        "chat_id" : chat_id, 
