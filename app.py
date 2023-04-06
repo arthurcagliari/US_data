@@ -5,6 +5,7 @@ import os
 import pandas as pd
 import prettytable
 import requests
+import json
 
 from bs4 import BeautifulSoup as bs
 from flask import Flask, request
