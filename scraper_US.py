@@ -1,6 +1,7 @@
 import datetime
 import gspread
 import openai
+import json
 import pandas as pd
 import prettytable
 import requests
