@@ -103,11 +103,6 @@ def telegram_bot():
   sheet = planilha.worksheet("US_Data")
   linhas = sheet.get("A3:Q20")
   
-  #### funcoes ajustadas para o scaping das tabelas
-  
-######
-
-
   #### definindo as variáveis com os textos de inflação e mercado de trabalho
   texto_CPI = texto_inf(2)
   texto_PPI = texto_inf(5)
@@ -136,9 +131,9 @@ def telegram_bot():
   elif message in ("Obrigado", "obrigado", "obrigado!", "Obrigado!", "Obrigada", "obrigada", "obrigada!", "Obrigada!", "Valeu", "valeu", "valeu!", "Valeu!", "tks", "thanks", "Opa, valeu!"):
      nova_mensagem = {"chat_id" : chat_id, "text" : "Estamos aqui para isso!"}
   elif message == "3":
-    nova_mensagem = {"chat_id" : chat_id, "text" : f'{payroll_text} \n\n (Este texto foi resumido e redigido por uma inteligência artificial) \n\n Digite "0" para voltar ao menu inicial.'}
+    nova_mensagem = {"chat_id" : chat_id, "text" : f'{payroll_text} \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "4":
-     nova_mensagem = {"chat_id" : chat_id, "text" : f'{livro_bege} \n\n Digite "0" para voltar ao menu inicial.'}
+     nova_mensagem = {"chat_id" : chat_id, "text" : f'{livro_bege} \n\n (Este texto foi resumido e redigido por uma inteligência artificial) \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "5":
     nova_mensagem = {"chat_id" : chat_id, "text" : "Ainda estamos desenvolvendo esta opção. Aguarde!"}
   elif message in ("tchau", "Tchau", "xau", "Xau"):
