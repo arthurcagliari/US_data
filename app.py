@@ -69,12 +69,12 @@ def telegram_bot():
   elif message == "1":
      nova_mensagem = {
        "chat_id" : chat_id, 
-       "text" : f'<b><u>CPI dos EUA</u></b> \n\n {texto_CPI} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
+       "text" : f'<b><u>CPI dos EUA</u></b> \n\n{texto_CPI} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
        "parse_mode": "HTML"}
   elif message == "2":
      nova_mensagem = {
        "chat_id" : chat_id, 
-       "text" : f'<b><u>PPI dos EUA</u></b> \n\n {texto_PPI} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
+       "text" : f'<b><u>PPI dos EUA</u></b> \n\n{texto_PPI} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
        "parse_mode": "HTML"}
   elif message in ("Obrigado", "obrigado", "obrigado!", "Obrigado!", "Obrigada", "obrigada", "obrigada!", "Obrigada!", "Valeu", "valeu", "valeu!", "Valeu!", "tks", "thanks", "Opa, valeu!"):
      nova_mensagem = {
@@ -83,12 +83,12 @@ def telegram_bot():
   elif message == "3":
     nova_mensagem = {
       "chat_id" : chat_id, 
-      "text" : f'<b><u>Payroll dos EUA</u></b> \n <i>(Mercado de trabalho)</i> \n\n {payroll_text} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
+      "text" : f'<b><u>Payroll dos EUA</u></b> \n <i>(Mercado de trabalho)</i> \n\n{payroll_text} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
       "parse_mode" : "HTML"}
   elif message == "4":
      nova_mensagem = {
        "chat_id" : chat_id, 
-       "text" : f'<b><u> Livro Bege (Fed)</u></b> \n\n {livro_bege} \n\n <i>(Este texto foi resumido e redigido por uma inteligência artificial)</i> \n\n <i>Digite "0" para voltar ao menu inicial.</i>', 
+       "text" : f'<b><u> Livro Bege (Fed)</u></b> \n\n{livro_bege} \n\n <i>(Este texto foi resumido e redigido por uma inteligência artificial)</i> \n\n <i>Digite "0" para voltar ao menu inicial.</i>', 
        "parse_mode": "HTML"}
   elif message == "5":
     nova_mensagem = {
