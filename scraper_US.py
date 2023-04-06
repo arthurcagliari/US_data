@@ -108,29 +108,29 @@ def mes(p,n):
     
 def lista_vagas():
 ### Primeiro, começando pela definição do número total de vagas geradas:
-dados = p.json()
-mes_atual_mt = dados['Results']['series'][8]['data'][0]['value']
-mes_anterior_mt = dados['Results']['series'][8]['data'][1]['value']
-mes_antes_anterior_mt = dados['Results']['series'][8]['data'][2]['value']
-total_de_vagas = '%.0f' %((float(mes_atual_mt) - float(mes_anterior_mt)))
-total_de_vagas_antes = '%.0f' %((float(mes_anterior_mt) - float(mes_antes_anterior_mt))) 
+    dados = p.json()
+    mes_atual_mt = dados['Results']['series'][8]['data'][0]['value']
+    mes_anterior_mt = dados['Results']['series'][8]['data'][1]['value']
+    mes_antes_anterior_mt = dados['Results']['series'][8]['data'][2]['value']
+    total_de_vagas = '%.0f' %((float(mes_atual_mt) - float(mes_anterior_mt)))
+    total_de_vagas_antes = '%.0f' %((float(mes_anterior_mt) - float(mes_antes_anterior_mt))) 
 
-  ### Segundo, descobrindo a taxa de desemprego do mês:
-taxa_desemprego_atual = dados['Results']['series'][9]['data'][0]['value']
-taxa_desemprego_anterior = dados['Results']['series'][9]['data'][1]['value']
-lista_vagas = ["", mes_atual_mt, mes_anterior_mt, mes_antes_anterior_mt, total_de_vagas, total_de_vagas_antes, taxa_desemprego_atual, taxa_desemprego_anterior]
-return lista_vagas
+      ### Segundo, descobrindo a taxa de desemprego do mês:
+    taxa_desemprego_atual = dados['Results']['series'][9]['data'][0]['value']
+    taxa_desemprego_anterior = dados['Results']['series'][9]['data'][1]['value']
+    lista_vagas = ["", mes_atual_mt, mes_anterior_mt, mes_antes_anterior_mt, total_de_vagas, total_de_vagas_antes, taxa_desemprego_atual, taxa_desemprego_anterior]
+    return lista_vagas
 
 def lista_ganho():
   ### Terceiro, calculando o ganho por hora na relação mensal e relação anual
-ganho_atual = dados['Results']['series'][10]['data'][0]['value']
-ganho_anterior = dados['Results']['series'][10]['data'][1]['value']
-ganho_antes_ant = dados['Results']['series'][10]['data'][2]['value']
-ganho_12anterior = dados['Results']['series'][10]['data'][12]['value']
-ganho_13anterior = dados['Results']['series'][10]['data'][12]['value']
-ganho_perc_mes = '%.1f' % ((float(ganho_atual) - float(ganho_anterior))*100/float(ganho_anterior))
-ganho_perc_mes_ant = '%.1f' % ((float(ganho_anterior) - float(ganho_antes_ant))*100/float(ganho_antes_ant))
-ganho_perc_ano = '%.1f' % ((float(ganho_atual) - float(ganho_12anterior))*100/float(ganho_12anterior))
-ganho_perc_ano_ant = '%.1f' % ((float(ganho_anterior) - float(ganho_13anterior))*100/float(ganho_13anterior))
-lista_ganho = ["", ganho_atual, ganho_anterior, ganho_antes_ant, ganho_12anterior, ganho_13anterior, ganho_perc_mes, ganho_perc_mes_ant, ganho_perc_ano, ganho_perc_ano_ant]
-return lista_ganho
+    ganho_atual = dados['Results']['series'][10]['data'][0]['value']
+    ganho_anterior = dados['Results']['series'][10]['data'][1]['value']
+    ganho_antes_ant = dados['Results']['series'][10]['data'][2]['value']
+    ganho_12anterior = dados['Results']['series'][10]['data'][12]['value']
+    ganho_13anterior = dados['Results']['series'][10]['data'][12]['value']
+    ganho_perc_mes = '%.1f' % ((float(ganho_atual) - float(ganho_anterior))*100/float(ganho_anterior))
+    ganho_perc_mes_ant = '%.1f' % ((float(ganho_anterior) - float(ganho_antes_ant))*100/float(ganho_antes_ant))
+    ganho_perc_ano = '%.1f' % ((float(ganho_atual) - float(ganho_12anterior))*100/float(ganho_12anterior))
+    ganho_perc_ano_ant = '%.1f' % ((float(ganho_anterior) - float(ganho_13anterior))*100/float(ganho_13anterior))
+    lista_ganho = ["", ganho_atual, ganho_anterior, ganho_antes_ant, ganho_12anterior, ganho_13anterior, ganho_perc_mes, ganho_perc_mes_ant, ganho_perc_ano, ganho_perc_ano_ant]
+    return lista_ganho
