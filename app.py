@@ -60,7 +60,7 @@ def raspagem():
     output = open(seriesId + '.txt','w')
     output.write (x.get_string())
     output.close() 
-   dados = p.json()
+  dados = p.json()
   
   ### definindo os meses de cada dado
   
