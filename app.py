@@ -28,7 +28,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-  return indice + menu + "Olá, esse é um site de teste."
+  return "Olá, esse é um site de teste."
 
 @app.route("/raspagem_US")
 def raspagem():
@@ -140,7 +140,7 @@ def telegram_bot():
      nova_mensagem = {
        "chat_id" : chat_id, 
        "text" : f'<b><u>CPI dos EUA</b></u> \n\n {texto_CPI} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
-       "parse_mode":"HTML"}
+       "parse_mode": "HTML"}
   elif message == "2":
      nova_mensagem = {
        "chat_id" : chat_id, 
