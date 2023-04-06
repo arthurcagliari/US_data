@@ -1,5 +1,7 @@
 !pip install gspread oauth2client
 !pip install openai==0.27
+sudo apt-get update
+sudo apt-get install libpython2.7-stdlib
 
 import datetime
 import gspread
