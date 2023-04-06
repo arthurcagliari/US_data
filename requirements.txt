@@ -4,3 +4,10 @@ tchan
 requests
 gspread
 oauth2client
+datetime
+json
+openai
+os
+pandas
+prettytable
+bs4
