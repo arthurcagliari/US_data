@@ -13,7 +13,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from tchan import ChannelScraper
 from scraper import payroll
 from scraper import texto_inf
-from scraper_US import CPI_PPI, lista_vagas, lista_ganho, mes
+from scraper_US import publicado
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
@@ -32,80 +32,7 @@ def index():
 
 @app.route("/raspagem")
 def raspagem():
-  GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
-  with open("credenciais.json", mode="w") as arquivo:
-    arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
-  conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
-  api = gspread.authorize(conta)
-  planilha = api.open_by_key("1S_ztKSv_gjalYZCjrb5CvU1fQMjHEfLw1k9i50HomF8")
-  sheet = planilha.worksheet("US_Data")
-  linhas = sheet.get("A3:Q20")
-  
-  headers = {'Content-type': 'application/json'}
-  data = json.dumps({"seriesid": ['CUSR0000SA0','CUUR0000SA0', 'CUSR0000SA0L1E','CUUR0000SA0L1E','WPSFD4','WPUFD4', 'WPSFD49104','WPUFD49104', 'CES0000000001','LNS14000000','CES0500000003'],"startyear":"2021", "endyear":"2023"})
-  p = requests.post('https://api.bls.gov/publicAPI/v2/timeseries/data/', data=data, headers=headers)
-  json_data = json.loads(p.text)
-  for series in json_data['Results']['series']:
-    x=prettytable.PrettyTable(["series id","year","period","value","footnotes"])
-    seriesId = series['seriesID']
-    for item in series['data']:
-        year = item['year']
-        period = item['period']
-        value = item['value']
-        footnotes=""
-        for footnote in item['footnotes']:
-            if footnote:
-                footnotes = footnotes + footnote['text'] + ','
-        if 'M01' <= period <= 'M12':
-            x.add_row([seriesId,year,period,value,footnotes[0:-1]])
-    output = open(seriesId + '.txt','w')
-    output.write (x.get_string())
-    output.close() 
-  dados = p.json()
-  
-  ### definindo os meses de cada dado
-  
-  #p = 0 ---> dado do CPI
-  #p = 4 ---> dado do PPI
-  #p = 8 ---> dado do payroll
-  
-  mes0CPI = mes(0,0)
-  mes1CPI = mes(0,1)
-  mes2CPI = mes(0,2)
-
-  mes0PPI = mes(4,0)
-  mes1PPI = mes(4,1)
-  mes2PPI = mes(4,2)
-
-  mes0Pay = mes(8,0)
-  mes1Pay = mes(8,1)
-  mes2Pay = mes(8,2)
-  
-  #### O código abaixo limpa e preenche a minha planilha
-  start_row = 3
-  end_row = 25
-  start_col = 'A'
-  end_col = 'Q'
-  range_string = f'{start_col}{start_row}:{end_col}{end_row}'
-  cell_list = sheet.range(range_string)
-  for cell in cell_list:
-      cell.value = ''
-  sheet.update_cells(cell_list)
-  
-  json.dumps(str(CPI_PPI))
-  json.dumps(str(lista_vagas))
-  json.dumps(str(lista_vagas))
-  json.dumps(str(mes))
-
-  lista_titulos = ["","dado bruto atual", "dado bruto anterior", "dado bruto não ajustado", "dado bruto há 12 meses","mensal (%)","anual (%)", "núcleo bruto", "núcleo bruto anterior", "núcleo bruto não ajustado", "núcleo bruto há 12 meses","núcleo/mensal (%)", "núcleo/anual (%)", "último mensal (%)", "último anual (%)", "último mensal núcleo (%)", "último anual núcleo (%)"]
-  lista_meses_CPI = ["mês referência", mes0CPI, mes1CPI, mes0CPI, mes0CPI, mes0CPI, mes0CPI, mes0CPI, mes1CPI, mes0CPI, mes0CPI, mes0CPI, mes0CPI, mes1CPI, mes1CPI, mes1CPI, mes1CPI]
-  lista_meses_PPI = ["mês referência", mes0PPI, mes1PPI, mes0PPI, mes0PPI, mes0PPI, mes0PPI, mes0PPI, mes1PPI, mes0PPI, mes0PPI, mes0PPI, mes0PPI, mes1PPI, mes1PPI, mes1PPI, mes1PPI]
-  lista_vazia = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
-  lista_payroll = ["payroll (merc. de trabalho)", "dado burto atual", "dado br. mês anterior", "dado br. dois meses antes", "total de vagas, em milhares", "total de vagas mês anterior, em milhares", "taxa de desemprego atual", "taxa de desemprego anterior"]
-  lista_meses_pay = ["mês referência", mes0Pay, mes1Pay, mes2Pay, mes0Pay, mes1Pay, mes0Pay, mes1Pay, mes0Pay, mes1Pay]
-  lista_payroll2 = ["ganho salarial", "ganho atual bruto", "ganho anterior bruto", "ganho há dois meses bruto", "ganho bruto 12 meses", "ganho bruto 13 meses", "ganho perc. atual", "ganho perc. anterior", "ganho acu. 12", "ganho acu. 12 anterior"]
-
-  sheet.append_rows([lista_titulos, lista_meses_CPI, CPI_PPI(0,1,2,3), lista_vazia, lista_meses_PPI, CPI_PPI(4,5,6,7), lista_vazia, lista_meses_pay, lista_payroll, lista_vagas, lista_vazia, lista_meses_pay, lista_payroll2, lista_ganho])
+  publicado()
   return "right"
 
 @app.route("/telegram-bot", methods=["POST"])
