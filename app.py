@@ -125,20 +125,37 @@ def telegram_bot():
     3 - Payroll (mercado de trabalho);  
     4 - Livro Bege'''}
   elif message == "1":
-     nova_mensagem = {"chat_id" : chat_id, "text" : f'{texto_CPI} \n\n Digite "0" para voltar ao menu inicial.'}
+     nova_mensagem = {
+       "chat_id" : chat_id, 
+       "text" : f'{texto_CPI} \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "2":
-     nova_mensagem = {"chat_id" : chat_id, "text" : f'{texto_PPI} \n\n Digite "0" para voltar ao menu inicial.'}
+     nova_mensagem = {
+       "chat_id" : chat_id, 
+       "text" : f'<b>CPI dos EUA</B> \n\n {texto_PPI} \n\n Digite "0" para voltar ao menu inicial.'}
   elif message in ("Obrigado", "obrigado", "obrigado!", "Obrigado!", "Obrigada", "obrigada", "obrigada!", "Obrigada!", "Valeu", "valeu", "valeu!", "Valeu!", "tks", "thanks", "Opa, valeu!"):
-     nova_mensagem = {"chat_id" : chat_id, "text" : "Estamos aqui para isso!"}
+     nova_mensagem = {
+       "chat_id" : chat_id, 
+       "text" : "Estamos aqui para isso!"}
   elif message == "3":
-    nova_mensagem = {"chat_id" : chat_id, "text" : f'{payroll_text} \n\n Digite "0" para voltar ao menu inicial.'}
+    nova_mensagem = {
+      "chat_id" : chat_id, 
+      "text" : f'{payroll_text} \n\n Digite "0" para voltar ao menu inicial.'}
   elif message == "4":
-     nova_mensagem = {"chat_id" : chat_id, "text" : f'{livro_bege} \n\n (Este texto foi resumido e redigido por uma inteligência artificial) \n\n Digite "0" para voltar ao menu inicial.'}
+     nova_mensagem = {
+       "chat_id" : chat_id, 
+       "text" : f'{livro_bege} \n\n <i>(Este texto foi resumido e redigido por uma inteligência artificial)</i> \n\n Digite "0" para voltar ao menu inicial.', 
+       "parse_mode": "HTML"}
   elif message == "5":
-    nova_mensagem = {"chat_id" : chat_id, "text" : "Ainda estamos desenvolvendo esta opção. Aguarde!"}
+    nova_mensagem = {
+      "chat_id" : chat_id, 
+      "text" : "Ainda estamos desenvolvendo esta opção. Aguarde!"}
   elif message in ("tchau", "Tchau", "xau", "Xau"):
-    nova_mensagem = {"chat_id" : chat_id, "text" : "Tchau. Até mais!"}
+    nova_mensagem = {
+      "chat_id" : chat_id, 
+      "text" : "Tchau. Até mais!"}
   else:
-    nova_mensagem = {"chat_id" : chat_id, "text" : "Aguarde, estou pensando ainda ou não entendi essa coordenada. Se eu demorar, escreva 'oi' ou 'olá' para conhecer as instruções corretas."}
+    nova_mensagem = {
+      "chat_id" : chat_id, 
+      "text" : "Aguarde, estou pensando ainda. Ou não entendi essa coordenada. Se eu demorar, escreva 'oi' ou 'olá' para conhecer as instruções corretas."}
   requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
   return "ok"
