@@ -9,4 +9,3 @@ openai
 pandas
 prettytable
 bs4
-json
