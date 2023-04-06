@@ -1,4 +1,4 @@
-pip install --upgrade pip
+pip install --upgrade pip==23.0.1
 pip install gspread oauth2client
 pip install openai==0.27
 
