@@ -79,33 +79,6 @@ def CPI_PPI(n,p,s,q):
   lista_dados = [indice, CPI_atual, CPI_anterior, CPI_atual_una, CPI_mes_atual_12, CPI_mensal_ajustado, CPI_anual_ajustado, NCPI_atual, NCPI_anterior, NCPI_atual_una, NCPI_mes_atual_12, NCPI_mensal_ajustado, NCPI_anual_ajustado, CPI_mensal_anterior_ajustado, CPI_anual_anterior_ajustado, NCPI_mensal_anterior_ajustado, NCPI_anual_anterior_ajustado]
 
   return lista_dados
-
-def mes(p,n):
-    if dados['Results']['series'][p]['data'][n]['period'] == 'M01':
-      mes_1 = 'janeiro'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M02':
-      mes_1 = 'fevereiro'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M03':
-      mes_1 = 'março'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M04':
-      mes_1 = 'abril'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M05':
-      mes_1 = 'maio'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M06':
-      mes_1 = 'junho'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M07':
-      mes_1 = 'julho'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M08':
-      mes_1 = 'agosto'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M09':
-      mes_1 = 'setembro'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M10':
-      mes_1 = 'outubro'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M11':
-      mes_1= 'novembro'
-    else:
-      mes_1 = 'dezembro'
-    return mes_1
     
 def lista_vagas():
 ### Primeiro, começando pela definição do número total de vagas geradas:
@@ -135,3 +108,67 @@ def lista_ganho():
     ganho_perc_ano_ant = '%.1f' % ((float(ganho_anterior) - float(ganho_13anterior))*100/float(ganho_13anterior))
     lista_ganho = ["", ganho_atual, ganho_anterior, ganho_antes_ant, ganho_12anterior, ganho_13anterior, ganho_perc_mes, ganho_perc_mes_ant, ganho_perc_ano, ganho_perc_ano_ant]
     return lista_ganho
+
+def mes(p,n):
+    if dados['Results']['series'][p]['data'][n]['period'] == 'M01':
+      mes_1 = 'janeiro'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M02':
+      mes_1 = 'fevereiro'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M03':
+      mes_1 = 'março'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M04':
+      mes_1 = 'abril'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M05':
+      mes_1 = 'maio'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M06':
+      mes_1 = 'junho'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M07':
+      mes_1 = 'julho'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M08':
+      mes_1 = 'agosto'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M09':
+      mes_1 = 'setembro'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M10':
+      mes_1 = 'outubro'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M11':
+      mes_1= 'novembro'
+    else:
+      mes_1 = 'dezembro'
+    return mes_1
+
+  mes0CPI = mes(0,0)
+  mes1CPI = mes(0,1)
+  mes2CPI = mes(0,2)
+
+  mes0PPI = mes(4,0)
+  mes1PPI = mes(4,1)
+  mes2PPI = mes(4,2)
+
+  mes0Pay = mes(8,0)
+  mes1Pay = mes(8,1)
+  mes2Pay = mes(8,2)
+    
+  lista_ganho = lista_ganho()
+  lista_vagas = lista_vagas()
+  
+  #### O código abaixo limpa e preenche a minha planilha
+def publicado():
+  start_row = 3
+  end_row = 25
+  start_col = 'A'
+  end_col = 'Q'
+  range_string = f'{start_col}{start_row}:{end_col}{end_row}'
+  cell_list = sheet.range(range_string)
+  for cell in cell_list:
+      cell.value = ''
+  sheet.update_cells(cell_list)
+  
+  lista_titulos = ["","dado bruto atual", "dado bruto anterior", "dado bruto não ajustado", "dado bruto há 12 meses","mensal (%)","anual (%)", "núcleo bruto", "núcleo bruto anterior", "núcleo bruto não ajustado", "núcleo bruto há 12 meses","núcleo/mensal (%)", "núcleo/anual (%)", "último mensal (%)", "último anual (%)", "último mensal núcleo (%)", "último anual núcleo (%)"]
+  lista_meses_CPI = ["mês referência", mes0CPI, mes1CPI, mes0CPI, mes0CPI, mes0CPI, mes0CPI, mes0CPI, mes1CPI, mes0CPI, mes0CPI, mes0CPI, mes0CPI, mes1CPI, mes1CPI, mes1CPI, mes1CPI]
+  lista_meses_PPI = ["mês referência", mes0PPI, mes1PPI, mes0PPI, mes0PPI, mes0PPI, mes0PPI, mes0PPI, mes1PPI, mes0PPI, mes0PPI, mes0PPI, mes0PPI, mes1PPI, mes1PPI, mes1PPI, mes1PPI]
+  lista_vazia = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+  lista_payroll = ["payroll (merc. de trabalho)", "dado burto atual", "dado br. mês anterior", "dado br. dois meses antes", "total de vagas, em milhares", "total de vagas mês anterior, em milhares", "taxa de desemprego atual", "taxa de desemprego anterior"]
+  lista_meses_pay = ["mês referência", mes0Pay, mes1Pay, mes2Pay, mes0Pay, mes1Pay, mes0Pay, mes1Pay, mes0Pay, mes1Pay]
+  lista_payroll2 = ["ganho salarial", "ganho atual bruto", "ganho anterior bruto", "ganho há dois meses bruto", "ganho bruto 12 meses", "ganho bruto 13 meses", "ganho perc. atual", "ganho perc. anterior", "ganho acu. 12", "ganho acu. 12 anterior"]
+
+  return sheet.append_rows([lista_titulos, lista_meses_CPI, CPI_PPI(0,1,2,3), lista_vazia, lista_meses_PPI, CPI_PPI(4,5,6,7), lista_vazia, lista_meses_pay, lista_payroll, lista_vagas, lista_vazia, lista_meses_pay, lista_payroll2, lista_ganho])
