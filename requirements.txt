@@ -6,7 +6,6 @@ gspread
 oauth2client
 datetime
 openai
-os
 pandas
 prettytable
 bs4
