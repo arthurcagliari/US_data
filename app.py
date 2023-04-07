@@ -127,8 +127,7 @@ def raspagem2():
   planilha = api.open_by_key("1S_ztKSv_gjalYZCjrb5CvU1fQMjHEfLw1k9i50HomF8")
   sheet = planilha.worksheet("US_Data")
   app = Flask(__name__)
-  livro_bege = beige_book().strip()############
-  sheet.update_cell(18, 1, "Livro Bege")
+  livro_bege = beige_book()
   sheet.update_cell(18, 2, livro_bege)
   return "beleza"
 
