@@ -13,6 +13,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from tchan import ChannelScraper
 from scraper import payroll
 from scraper import texto_inf
+from update import CPI_PPI
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
