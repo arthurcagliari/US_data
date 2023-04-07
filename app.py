@@ -1,11 +1,13 @@
 import datetime
 import gspread
+import json
 import openai
 import os
 import pandas as pd
 import prettytable
 import requests
-import json
+import telegram
+
 
 from bs4 import BeautifulSoup as bs
 from flask import Flask, request
@@ -137,6 +139,7 @@ def telegram_bot():
   texto_CPI = texto_inf(2)
   texto_PPI = texto_inf(5)
   payroll_text = payroll_2()
+  bandeira_EUA = \U0001F1FA\U0001F1F8'
   
   #### ajustando o conteúdo do Livro Bege
   livro_bege = linhas[15][1]
@@ -171,7 +174,7 @@ def telegram_bot():
   elif message == "3":
     nova_mensagem = {
       "chat_id" : chat_id, 
-      "text" : f'<b><u>Payroll dos EUA</u></b> \n <i>(Mercado de trabalho)</i> \n\n{payroll_text} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
+      "text" : f'<b><u>{bandeira_EUA} Payroll dos EUA</u></b> \n <i>(Mercado de trabalho)</i> \n\n{payroll_text} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
       "parse_mode" : "HTML"}
   elif message == "4":
      nova_mensagem = {
