@@ -102,5 +102,101 @@ def payroll():
   mes_antes_anterior_mt = dados['Results']['series'][8]['data'][2]['value']
   total_de_vagas = '%.0f' %((float(mes_atual_mt) - float(mes_anterior_mt)))
   total_de_vagas_antes = '%.0f' %((float(mes_anterior_mt) - float(mes_antes_anterior_mt))) 
+  taxa_desemprego_atual = dados['Results']['series'][9]['data'][0]['value']
+  taxa_desemprego_anterior = dados['Results']['series'][9]['data'][1]['value']
   lista_vagas = ["", mes_atual_mt, mes_anterior_mt, mes_antes_anterior_mt, total_de_vagas, total_de_vagas_antes, taxa_desemprego_atual, taxa_desemprego_anterior]
   return lista_vagas
+
+def renda():
+  ganho_atual = dados['Results']['series'][10]['data'][0]['value']
+  ganho_anterior = dados['Results']['series'][10]['data'][1]['value']
+  ganho_antes_ant = dados['Results']['series'][10]['data'][2]['value']
+  ganho_12anterior = dados['Results']['series'][10]['data'][12]['value']
+  ganho_13anterior = dados['Results']['series'][10]['data'][12]['value']
+  ganho_perc_mes = '%.1f' % ((float(ganho_atual) - float(ganho_anterior))*100/float(ganho_anterior))
+  ganho_perc_mes_ant = '%.1f' % ((float(ganho_anterior) - float(ganho_antes_ant))*100/float(ganho_antes_ant))
+  ganho_perc_ano = '%.1f' % ((float(ganho_atual) - float(ganho_12anterior))*100/float(ganho_12anterior))
+  ganho_perc_ano_ant = '%.1f' % ((float(ganho_anterior) - float(ganho_13anterior))*100/float(ganho_13anterior))
+  lista_ganho = ["", ganho_atual, ganho_anterior, ganho_antes_ant, ganho_12anterior, ganho_13anterior, ganho_perc_mes, ganho_perc_mes_ant, ganho_perc_ano, ganho_perc_ano_ant]
+  return lista_ganho
+
+def mes(p,n):
+    if dados['Results']['series'][p]['data'][n]['period'] == 'M01':
+      mes_1 = 'janeiro'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M02':
+      mes_1 = 'fevereiro'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M03':
+      mes_1 = 'março'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M04':
+      mes_1 = 'abril'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M05':
+      mes_1 = 'maio'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M06':
+      mes_1 = 'junho'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M07':
+      mes_1 = 'julho'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M08':
+      mes_1 = 'agosto'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M09':
+      mes_1 = 'setembro'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M10':
+      mes_1 = 'outubro'
+    elif dados['Results']['series'][p]['data'][n]['period'] == 'M11':
+      mes_1= 'novembro'
+    else:
+      mes_1 = 'dezembro'
+    return mes_1
+  
+def beige_book():
+  data_atual = datetime.datetime.now()
+  dia_atual = data_atual.day
+  mes_atual = data_atual.month
+
+  if mes_atual <= 4:
+    if dia_atual < 19:
+      n = '03'
+
+  elif mes_atual <= 5:
+    if dia_atual < 30:
+      n = '04'
+
+  elif mes_atual <= 7:
+    if dia_atual < 11:
+      n = '05'
+
+  elif mes_atual <= 9:
+    if dia_atual < 5:
+      n = '07'
+
+  elif mes_atual <= 10:
+    if dia_atual < 17:
+      n = '09'
+
+  elif mes_atual <= 11:
+    if dia_atual < 28:
+      n = '10'
+
+  url = f'https://www.federalreserve.gov/monetarypolicy/beigebook2023{n}.htm'
+  
+  soup = bs(requests.get(url).content, "html.parser")
+  abstract = soup.find("div", "col-xs-12 col-md-9").text
+  palavra_inicial = 'Overall Economic Activity'
+  palavra_final = 'Highlights by Federal Reserve District'
+  pos_inicial = abstract.find(palavra_inicial) + len(palavra_inicial) + 1
+  pos_final = abstract.find(palavra_final)
+  subtexto = abstract[pos_inicial:pos_final].strip()
+  
+  prompt = "Considere o seguinte subtexto:"
+  pauta = "\n Transforme este subtexto em uma notícia de dois parágrafos, com no máximo 400 caracteres."
+
+  response = openai.Completion.create(
+    model="text-davinci-003",
+    prompt= prompt + subtexto + pauta,
+    temperature=0.0,
+    max_tokens=500,
+    top_p=1.0, 
+    frequency_penalty=0.0,
+    presence_penalty=0.0
+  )
+  livro_bege = response["choices"][0]["text"]
+  return livro_bege
