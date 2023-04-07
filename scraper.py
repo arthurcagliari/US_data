@@ -112,7 +112,7 @@ de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
 
 ### Payroll - mercado de trabalho dos EUA
 
-def payroll():
+def payroll_2():
     
     GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
     with open("credenciais.json", mode="w") as arquivo:
