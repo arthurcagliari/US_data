@@ -196,5 +196,5 @@ def beige_book():
     frequency_penalty=0.0,
     presence_penalty=0.0
   )
-  livro_bege = response["choices"][0]["text"]
+  livro_bege = response["choices"][0]["text"].strip()
   return livro_bege
