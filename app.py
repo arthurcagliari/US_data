@@ -94,7 +94,7 @@ def raspagem():
   
   #### O código abaixo limpa a minha planilha
   start_row = 3
-  end_row = 25
+  end_row = 16
   start_col = 'A'
   end_col = 'Q'
   range_string = f'{start_col}{start_row}:{end_col}{end_row}'
@@ -114,7 +114,7 @@ def raspagem():
   sheet.append_rows([lista_titulos, lista_meses_CPI, lista_CPI, lista_vazia, lista_meses_PPI, lista_PPI, lista_vazia, lista_meses_pay, lista_payroll, lista_vagas, lista_vazia, lista_meses_pay, lista_payroll2, lista_ganho])
   return "right"
 
-@app.route("/raspagem-2", methods=["POST"])
+@app.route("/raspagem-2")
 def raspagem_2():
   livro_bege = beige_book()
   sheet.update_cell(18, 1, "Livro Bege")
