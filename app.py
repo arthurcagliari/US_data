@@ -19,6 +19,7 @@ from scraper import payroll_2, texto_inf
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
 GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
+OPENAI_KEY = os.environ["OPENAI_KEY"]
 with open("credenciais.json", mode="w") as arquivo:
   arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
 conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
@@ -26,6 +27,7 @@ api = gspread.authorize(conta) # sheets.new
 planilha = api.open_by_key("1S_ztKSv_gjalYZCjrb5CvU1fQMjHEfLw1k9i50HomF8")
 sheet = planilha.worksheet("US_Data")
 app = Flask(__name__)
+openai.api_key = OPENAI_KEY
 
 @app.route("/")
 def index():
