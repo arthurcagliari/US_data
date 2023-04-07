@@ -68,53 +68,8 @@ def raspagem():
       
    ### Montando a estrutura para formação de texto, de acordo com os dados dos EUA
   dados = p.json()
-  def CPI_PPI(n,p,s,q):
-    ###### Leituras recentes
-    if n == 0:
-      indice = "CPI"
-    else:
-      indice = "PPI"
-    CPI_atual = dados['Results']['series'][n]['data'][0]['value'] ### dado ajustado
-    CPI_anterior = dados['Results']['series'][n]['data'][1]['value']
-    CPI_atual_una = dados['Results']['series'][p]['data'][0]['value'] ### dado não ajustado
-    CPI_mes_atual_12 = dados['Results']['series'][p]['data'][12]['value']
-    CPI_mensal = (float(CPI_atual) - float(CPI_anterior))*100/float(CPI_anterior)
-    CPI_anual = (float(CPI_atual_una) - float(CPI_mes_atual_12))*100/float(CPI_mes_atual_12)
-    CPI_mensal_ajustado ='%.1f' % CPI_mensal
-    CPI_anual_ajustado ='%.1f' % CPI_anual
-
-    ### Núcleo do CPI (sem energia e alimentos):
-    NCPI_atual = dados['Results']['series'][s]['data'][0]['value']
-    NCPI_anterior = dados['Results']['series'][s]['data'][1]['value']
-    NCPI_atual_una = dados['Results']['series'][q]['data'][0]['value']
-    NCPI_mes_atual_12 = dados['Results']['series'][q]['data'][12]['value']
-    NCPI_mensal = (float(NCPI_atual) - float(NCPI_anterior))*100/float(NCPI_anterior)
-    NCPI_anual = (float(NCPI_atual_una) - float(NCPI_mes_atual_12))*100/float(NCPI_mes_atual_12)
-    NCPI_mensal_ajustado ='%.1f' % NCPI_mensal
-    NCPI_anual_ajustado ='%.1f' % NCPI_anual
-
-    ####### Leituras anteriores do CPI
-    CPI_anterior = dados['Results']['series'][n]['data'][1]['value']
-    CPI_anterior_una = dados['Results']['series'][p]['data'][1]['value']
-    CPI_anterior_2 = dados['Results']['series'][n]['data'][2]['value']
-    CPI_mes_anterior_12 = dados['Results']['series'][p]['data'][13]['value']
-    CPI_mensal_anterior = (float(CPI_anterior) - float(CPI_anterior_2))*100/float(CPI_anterior_2)
-    CPI_anual_anterior = (float(CPI_anterior_una) - float(CPI_mes_anterior_12))*100/float(CPI_mes_anterior_12)
-    CPI_mensal_anterior_ajustado ='%.1f' % CPI_mensal_anterior
-    CPI_anual_anterior_ajustado ='%.1f' % CPI_anual_anterior
-
-    ####### Leituras anteriores do núcleo do CPI
-    NCPI_anterior = dados['Results']['series'][s]['data'][1]['value']
-    NCPI_anterior_una = dados['Results']['series'][q]['data'][1]['value']
-    NCPI_anterior_2 = dados['Results']['series'][s]['data'][2]['value']
-    NCPI_mes_anterior_12 = dados['Results']['series'][q]['data'][13]['value']
-    NCPI_mensal_anterior = (float(NCPI_anterior) - float(NCPI_anterior_2))*100/float(NCPI_anterior_2)
-    NCPI_anual_anterior = (float(NCPI_anterior_una) - float(NCPI_mes_anterior_12))*100/float(NCPI_mes_anterior_12)
-    NCPI_mensal_anterior_ajustado ='%.1f' % NCPI_mensal_anterior
-    NCPI_anual_anterior_ajustado ='%.1f' % NCPI_anual_anterior
-
-    lista_dados = [indice, CPI_atual, CPI_anterior, CPI_atual_una, CPI_mes_atual_12, CPI_mensal_ajustado, CPI_anual_ajustado, NCPI_atual, NCPI_anterior, NCPI_atual_una, NCPI_mes_atual_12, NCPI_mensal_ajustado, NCPI_anual_ajustado, CPI_mensal_anterior_ajustado, CPI_anual_anterior_ajustado, NCPI_mensal_anterior_ajustado, NCPI_anual_anterior_ajustado]
-    return lista_dados
+  lista_CPI = CPI_PPI(0,1,2,3)
+  lista_PPI = CPI_PPI(4,5,6,7)
   
     ### Primeiro, começando pela definição do número total de vagas geradas:
   dados = p.json()
@@ -207,7 +162,7 @@ def raspagem():
   lista_payroll2 = ["ganho salarial", "ganho atual bruto", "ganho anterior bruto", "ganho há dois meses bruto", "ganho bruto 12 meses", "ganho bruto 13 meses", "ganho perc. atual", "ganho perc. anterior", "ganho acu. 12", "ganho acu. 12 anterior"]
   lista_ganho = ["", ganho_atual, ganho_anterior, ganho_antes_ant, ganho_12anterior, ganho_13anterior, ganho_perc_mes, ganho_perc_mes_ant, ganho_perc_ano, ganho_perc_ano_ant]
 
-  sheet.append_rows([lista_titulos, lista_meses_CPI, CPI_PPI(0,1,2,3), lista_vazia, lista_meses_PPI, CPI_PPI(4,5,6,7), lista_vazia, lista_meses_pay, lista_payroll, lista_vagas, lista_vazia, lista_meses_pay, lista_payroll2, lista_ganho])
+  sheet.append_rows([lista_titulos, lista_meses_CPI, lista_CPI, lista_vazia, lista_meses_PPI, lista_PPI, lista_vazia, lista_meses_pay, lista_payroll, lista_vagas, lista_vazia, lista_meses_pay, lista_payroll2, lista_ganho])
   
   ### Até aqui, eu raspei as informações do site do BLS e joguei numa planilha. Agora vou usar o openai para fazer um resumo do Livro Bege
   ### Para começar, eu decidi criar uma regra para atualizar a URL que for raspada para obter o texto que eu quero do Livro Bege.
