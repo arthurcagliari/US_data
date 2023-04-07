@@ -115,7 +115,7 @@ def raspagem():
   return "right"
 
 @app.route("/raspagem-2", methods=["POST"])
-def raspagem_2:
+def raspagem_2():
   livro_bege = beige_book()
   sheet.update_cell(18, 1, "Livro Bege")
   sheet.update_cell(18, 2, livro_bege.strip())
