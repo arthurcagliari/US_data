@@ -95,3 +95,12 @@ def CPI_PPI(n,p,s,q):
 
   lista_dados = [indice, CPI_atual, CPI_anterior, CPI_atual_una, CPI_mes_atual_12, CPI_mensal_ajustado, CPI_anual_ajustado, NCPI_atual, NCPI_anterior, NCPI_atual_una, NCPI_mes_atual_12, NCPI_mensal_ajustado, NCPI_anual_ajustado, CPI_mensal_anterior_ajustado, CPI_anual_anterior_ajustado, NCPI_mensal_anterior_ajustado, NCPI_anual_anterior_ajustado]
   return lista_dados
+
+def payroll():
+  mes_atual_mt = dados['Results']['series'][8]['data'][0]['value']
+  mes_anterior_mt = dados['Results']['series'][8]['data'][1]['value']
+  mes_antes_anterior_mt = dados['Results']['series'][8]['data'][2]['value']
+  total_de_vagas = '%.0f' %((float(mes_atual_mt) - float(mes_anterior_mt)))
+  total_de_vagas_antes = '%.0f' %((float(mes_anterior_mt) - float(mes_antes_anterior_mt))) 
+  lista_vagas = ["", mes_atual_mt, mes_anterior_mt, mes_antes_anterior_mt, total_de_vagas, total_de_vagas_antes, taxa_desemprego_atual, taxa_desemprego_anterior]
+  return lista_vagas
