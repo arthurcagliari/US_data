@@ -22,6 +22,8 @@ api = gspread.authorize(conta) # sheets.new
 planilha = api.open_by_key("1S_ztKSv_gjalYZCjrb5CvU1fQMjHEfLw1k9i50HomF8")
 sheet = planilha.worksheet("US_Data")
 app = Flask(__name__)
+OPENAI_KEY = os.environ["OPENAI_KEY"]
+openai.api_key = OPENAI_KEY
 
 headers = {'Content-type': 'application/json'}
 data = json.dumps({"seriesid": ['CUSR0000SA0','CUUR0000SA0', 'CUSR0000SA0L1E','CUUR0000SA0L1E','WPSFD4','WPUFD4', 'WPSFD49104','WPUFD49104', 'CES0000000001','LNS14000000','CES0500000003'],"startyear":"2021", "endyear":"2023"})
