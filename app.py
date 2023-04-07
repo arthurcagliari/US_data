@@ -133,7 +133,7 @@ def telegram_bot():
   #### definindo as variáveis com os textos de inflação e mercado de trabalho
   texto_CPI = texto_inf(2)
   texto_PPI = texto_inf(5)
-  payroll_text = payroll()
+  payroll_text = payroll_2()
   
   #### ajustando o conteúdo do Livro Bege
   livro_bege = linhas[15][1]
