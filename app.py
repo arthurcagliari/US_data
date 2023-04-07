@@ -139,7 +139,7 @@ def telegram_bot():
   texto_CPI = texto_inf(2)
   texto_PPI = texto_inf(5)
   payroll_text = payroll_2()
-  bandeira_EUA = \U0001F1FA\U0001F1F8'
+  bandeira_EUA = '\U0001F1FA\U0001F1F8'
   
   #### ajustando o conteúdo do Livro Bege
   livro_bege = linhas[15][1]
