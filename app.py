@@ -149,7 +149,7 @@ def telegram_bot():
   texto_PPI = texto_inf(5)
   payroll_text = payroll_2()
   bandeira_EUA = '\U0001F1FA\U0001F1F8'
-  beige_bk = 'U+1F4D4'
+  beige_bk = '\U0001F4D6'
   
   #### ajustando o conteúdo do Livro Bege
   livro_bege = linhas[15][1]
