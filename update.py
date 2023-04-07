@@ -46,9 +46,8 @@ for series in json_data['Results']['series']:
     output.write (x.get_string())
     output.close()
       
- ### Montando a estrutura para formação de texto, de acordo com os dados dos EUA
- dados = p.json()
-
+### Montando a estrutura para formação de texto, de acordo com os dados dos EUA
+dados = p.json()
 def CPI_PPI(n,p,s,q):
 ###### Leituras recentes
   if n == 0:
