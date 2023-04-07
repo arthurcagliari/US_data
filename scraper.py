@@ -15,6 +15,16 @@ linhas = sheet.get("A3:Q20")
 
 #### CPI e PPI
 def texto_inf(n):
+    
+    GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
+    with open("credenciais.json", mode="w") as arquivo:
+        arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
+    conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
+    api = gspread.authorize(conta) # sheets.new
+    planilha = api.open_by_key("1S_ztKSv_gjalYZCjrb5CvU1fQMjHEfLw1k9i50HomF8")
+    sheet = planilha.worksheet("US_Data")
+    linhas = sheet.get("A3:Q20")
+    
     if n == 2:
       mes = linhas[1][1]
       mes2 = linhas[1][2]
@@ -103,6 +113,16 @@ de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
 ### Payroll - mercado de trabalho dos EUA
 
 def payroll():
+    
+    GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
+    with open("credenciais.json", mode="w") as arquivo:
+        arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
+    conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
+    api = gspread.authorize(conta) # sheets.new
+    planilha = api.open_by_key("1S_ztKSv_gjalYZCjrb5CvU1fQMjHEfLw1k9i50HomF8")
+    sheet = planilha.worksheet("US_Data")
+    linhas = sheet.get("A3:Q20")
+    
     if linhas[9][1] > linhas[9][2]:
       substantivo_1 = "alta"
     elif linhas[9][1] < linhas[9][2]:
