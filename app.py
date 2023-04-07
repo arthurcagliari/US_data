@@ -116,8 +116,17 @@ def raspagem():
   sheet.append_rows([lista_titulos, lista_meses_CPI, lista_CPI, lista_vazia, lista_meses_PPI, lista_PPI, lista_vazia, lista_meses_pay, lista_payroll, lista_vagas, lista_vazia, lista_meses_pay, lista_payroll2, lista_ganho])
   return "right"
 
-@app.route("/raspagem-2")
-def raspagem_2():
+@app.route("/raspagem2")
+def raspagem2():
+  GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
+  OPENAI_KEY = os.environ["OPENAI_KEY"]
+  with open("credenciais.json", mode="w") as arquivo:
+    arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
+  conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
+  api = gspread.authorize(conta)
+  planilha = api.open_by_key("1S_ztKSv_gjalYZCjrb5CvU1fQMjHEfLw1k9i50HomF8")
+  sheet = planilha.worksheet("US_Data")
+  app = Flask(__name__)
   livro_bege = beige_book()
   sheet.update_cell(18, 1, "Livro Bege")
   sheet.update_cell(18, 2, livro_bege.strip())
@@ -140,6 +149,7 @@ def telegram_bot():
   texto_PPI = texto_inf(5)
   payroll_text = payroll_2()
   bandeira_EUA = '\U0001F1FA\U0001F1F8'
+  beige_bk = 'U+1F4D4'
   
   #### ajustando o conteúdo do Livro Bege
   livro_bege = linhas[15][1]
@@ -160,12 +170,12 @@ def telegram_bot():
   elif message == "1":
      nova_mensagem = {
        "chat_id" : chat_id, 
-       "text" : f'<b><u>CPI dos EUA</u></b> \n\n{texto_CPI} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
+       "text" : f'<b><u>CPI dos EUA {bandeira_EUA}</u></b> \n\n{texto_CPI} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
        "parse_mode": "HTML"}
   elif message == "2":
      nova_mensagem = {
        "chat_id" : chat_id, 
-       "text" : f'<b><u>PPI dos EUA</u></b> \n\n{texto_PPI} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
+       "text" : f'<b><u>PPI dos EUA {bandeira_EUA}</u></b> \n\n{texto_PPI} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
        "parse_mode": "HTML"}
   elif message in ("Obrigado", "obrigado", "obrigado!", "Obrigado!", "Obrigada", "obrigada", "obrigada!", "Obrigada!", "Valeu", "valeu", "valeu!", "Valeu!", "tks", "thanks", "Opa, valeu!"):
      nova_mensagem = {
@@ -174,12 +184,12 @@ def telegram_bot():
   elif message == "3":
     nova_mensagem = {
       "chat_id" : chat_id, 
-      "text" : f'<b><u>{bandeira_EUA} Payroll dos EUA</u></b> \n <i>(Mercado de trabalho)</i> \n\n{payroll_text} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
+      "text" : f'<b><u>Payroll dos EUA {bandeira_EUA}</u></b> \n <i>(Mercado de trabalho)</i> \n\n{payroll_text} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
       "parse_mode" : "HTML"}
   elif message == "4":
      nova_mensagem = {
        "chat_id" : chat_id, 
-       "text" : f'<b><u> Livro Bege (Fed)</u></b> \n\n{livro_bege} \n\n <i>(Este texto foi resumido e redigido por uma inteligência artificial)</i> \n\n <i>Digite "0" para voltar ao menu inicial.</i>', 
+       "text" : f'<b><u> Livro Bege (Fed) {beige_bk}</u></b> \n\n{livro_bege} \n\n <i>(Este texto foi resumido e redigido por uma inteligência artificial)</i> \n\n <i>Digite "0" para voltar ao menu inicial.</i>', 
        "parse_mode": "HTML"}
   elif message == "5":
     nova_mensagem = {
