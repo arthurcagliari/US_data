@@ -107,6 +107,15 @@ def raspagem():
   lista_payroll2 = ["ganho salarial", "ganho atual bruto", "ganho anterior bruto", "ganho há dois meses bruto", "ganho bruto 12 meses", "ganho bruto 13 meses", "ganho perc. atual", "ganho perc. anterior", "ganho acu. 12", "ganho acu. 12 anterior"]
   values =[lista_titulos, lista_meses_CPI, lista_CPI, lista_vazia, lista_meses_PPI, lista_PPI, lista_vazia, lista_meses_pay, lista_payroll, lista_vagas, lista_vazia, lista_meses_pay, lista_payroll2, lista_ganho]
   sheet.update(range, values)
+  
+  rg = 'A20:Q24'
+  lista_mes_CPI = meses(0)
+  lista_mes_PPI = meses(4)
+  lista_CPI = lista_per(1)
+  lista_PPI = lista_per(5)
+  values_2 =[lista_mes_CPI, lista_CPI, lista_vazia, lista_mes_PPI, lista_PPI]
+  sheet.update(rg, values_2)
+  
   return "right"
 
 @app.route("/raspagem2")
