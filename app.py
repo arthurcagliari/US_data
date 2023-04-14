@@ -159,7 +159,7 @@ def telegram_bot():
   api = gspread.authorize(conta)
   planilha = api.open_by_key("1S_ztKSv_gjalYZCjrb5CvU1fQMjHEfLw1k9i50HomF8")
   sheet = planilha.worksheet("US_Data")
-  linhas = sheet.get("A3:Q20")
+  linhas = sheet.get("A3:Q26")
   
   #### definindo as variáveis com os textos de inflação e mercado de trabalho
   texto_CPI = texto_inf(2)
@@ -170,6 +170,23 @@ def telegram_bot():
   
   #### ajustando o conteúdo do Livro Bege
   livro_bege = linhas[15][1]
+  
+  ### ajustando tabelinha
+  
+  def delta(g,h):
+    lista_acumulado = []
+    for n in range (1,12):
+      wed = f'{linhas[g][n]} \u2192 {linhas[h][n]}%'
+      lista_acumulado.append(wed)
+    s = f'''{lista_acumulado[0]} \n{lista_acumulado[1]}
+    {lista_acumulado[2]} \n{lista_acumulado[3]} \n{lista_acumulado[4]}
+    {lista_acumulado[5]} \n{lista_acumulado[6]} \n{lista_acumulado[7]}
+    {lista_acumulado[8]} \n{lista_acumulado[9]} \n{lista_acumulado[10]}
+    {lista_acumulado[11]} \n{lista_acumulado[12]'
+    return s  
+
+  acu_CPI = delta(17,18)
+  acu_PPI = delta(20,21)
     
   #### ajustando as respostas de acordo com os conteúdos explorados até agora
   update = request.json
@@ -187,7 +204,13 @@ def telegram_bot():
   elif message == "1":
      nova_mensagem = {
        "chat_id" : chat_id, 
-       "text" : f'<b><u>CPI dos EUA {bandeira_EUA}</u></b> \n\n{texto_CPI} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
+       "text" : f'<b><u>CPI dos EUA {bandeira_EUA}</u></b> \n\n{texto_CPI} \n\n <i>Se quiser ver o histórico do acumulado de 12 meses do CPI, escreva "+CPI" ou "mais CPI".</i> \n\n <b>Digite "0" para voltar ao menu inicial.</b>',
+       "parse_mode": "HTML"}
+   elif message in ("+CPI", "maisCPI", "mais CPI", "MAISCPI", "MaisCPI", "Maiscpi"):
+     nova_mensagem = {
+       "chat_id" : chat_id, 
+       "text" : f'''<b><u>Acumulado de 12 meses do CPI</u></b>
+       {acu_CPI}''',
        "parse_mode": "HTML"}
   elif message == "2":
      nova_mensagem = {
