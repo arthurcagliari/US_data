@@ -109,7 +109,7 @@ def raspagem():
   sheet.update(ranges, values)
   return "right"
 
-#@app.route("/raspagem1")
+@app.route("/raspagem1")
 def raspagem1():
   TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
   TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
