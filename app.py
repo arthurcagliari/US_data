@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup as bs
 from flask import Flask, request
 from oauth2client.service_account import ServiceAccountCredentials
 from tchan import ChannelScraper
-from scraper import CPI_PPI, payroll, renda, mes, beige_book
+from scraper import CPI_PPI, payroll, renda, mes, beige_book, meses, lista_per
 from updates import payroll_2, texto_inf
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
