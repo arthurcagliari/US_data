@@ -182,7 +182,7 @@ def telegram_bot():
     {lista_acumulado[2]} \n{lista_acumulado[3]} \n{lista_acumulado[4]}
     {lista_acumulado[5]} \n{lista_acumulado[6]} \n{lista_acumulado[7]}
     {lista_acumulado[8]} \n{lista_acumulado[9]} \n{lista_acumulado[10]}
-    {lista_acumulado[11]} \n{lista_acumulado[12]'
+    {lista_acumulado[11]} \n{lista_acumulado[12]}'''
     return s  
 
   acu_CPI = delta(17,18)
