@@ -13,8 +13,8 @@ from bs4 import BeautifulSoup as bs
 from flask import Flask, request
 from oauth2client.service_account import ServiceAccountCredentials
 from tchan import ChannelScraper
-from scraper import CPI_PPI, payroll, renda, mes, beige_book
-from updates import payroll_2, texto_inf
+from scraper import CPI_PPI, payroll, renda, mes, beige_book, lista_per, meses 
+from updates import payroll_2, texto_inf, delta
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
@@ -108,6 +108,31 @@ def raspagem():
   values =[lista_titulos, lista_meses_CPI, lista_CPI, lista_vazia, lista_meses_PPI, lista_PPI, lista_vazia, lista_meses_pay, lista_payroll, lista_vagas, lista_vazia, lista_meses_pay, lista_payroll2, lista_ganho]
   sheet.update(ranges, values)
   return "right"
+
+#@app.route("/raspagem1")
+def raspagem1():
+  TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
+  TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
+  GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
+  OPENAI_KEY = os.environ["OPENAI_KEY"]
+  with open("credenciais.json", mode="w") as arquivo:
+    arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
+  conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
+  api = gspread.authorize(conta)
+  planilha = api.open_by_key("1S_ztKSv_gjalYZCjrb5CvU1fQMjHEfLw1k9i50HomF8")
+  sheet = planilha.worksheet("US_Data")
+  app = Flask(__name__)
+  openai.api_key = OPENAI_KEY
+  
+  ranges = 'A20:Q26'
+  lista_mes_CPI = meses(0)
+  lista_mes_PPI = meses(4)
+  lista_vazia = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+  lista_CPI = lista_per(1)
+  lista_PPI = lista_per(5)
+  values =[lista_mes_CPI, lista_CPI, lista_vazia, lista_mes_PPI, lista_PPI]
+  sheet.update(ranges, values)
+  return "tudo certo"
 
 @app.route("/raspagem2")
 def raspagem2():
