@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup as bs
 from flask import Flask, request
 from oauth2client.service_account import ServiceAccountCredentials
 from tchan import ChannelScraper
-from scraper import CPI_PPI, payroll, renda, mes, beige_book, meses, lista_per
+from scraper import CPI_PPI, payroll, renda, mes, beige_book, meses, lista_per, delta
 from updates import payroll_2, texto_inf
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
@@ -170,21 +170,6 @@ def telegram_bot():
   
   #### ajustando o conteúdo do Livro Bege
   livro_bege = linhas[15][1]
-  
-  ### ajustando tabelinha
-def delta(g,h):
-  lista_acumulado = []
-  for n in range (1,13):
-    wed = f'{linhas[g][n]} \u2192 {linhas[h][n]}%'
-    lista_acumulado.append(wed)
-    s = f'''{lista_acumulado[0]} \n{lista_acumulado[1]}
-{lista_acumulado[2]} \n{lista_acumulado[3]}
-{lista_acumulado[4]} \n{lista_acumulado[5]}
-{lista_acumulado[6]} \n{lista_acumulado[7]}
-{lista_acumulado[8]} \n{lista_acumulado[9]}
-{lista_acumulado[10]} \n{lista_acumulado[11]}'''
-    return s  
-
   acu_CPI = delta(17,18)
   acu_PPI = delta(20,21)
     
