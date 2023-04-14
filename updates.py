@@ -113,7 +113,6 @@ de {mes} {verbo_2N} {linhas[n][12]}%, {verbo_4N}.'''
 ### Payroll - mercado de trabalho dos EUA
 
 def payroll_2():
-    
     GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
     with open("credenciais.json", mode="w") as arquivo:
         arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
@@ -146,3 +145,20 @@ Em relação ao ganho salarial, houve um aumento de {linhas[13][6]}% em {linhas[
 no acumulado em 12 meses o crescimento do salário foi de {linhas[13][8]}%.'''
 
     return payroll_funcao
+
+def delta(g,h):
+    GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
+    with open("credenciais.json", mode="w") as arquivo:
+        arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
+    conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
+    api = gspread.authorize(conta) # sheets.new
+    planilha = api.open_by_key("1S_ztKSv_gjalYZCjrb5CvU1fQMjHEfLw1k9i50HomF8")
+    sheet = planilha.worksheet("US_Data")
+    linhas = sheet.get("A3:Q26")
+    
+    lista_acumulado = []
+    for n in range (1,13):
+      wed = f'{linhas[g][n]} \u2192 {linhas[h][n]}%'
+      lista_acumulado.append(wed)
+      s = f'''{lista_acumulado[0]} \n{lista_acumulado[1]} \n{lista_acumulado[2]} \n{lista_acumulado[3]} \n{lista_acumulado[4]} \n{lista_acumulado[5]} \n{lista_acumulado[6]} \n{lista_acumulado[7]} \n{lista_acumulado[8]} \n{lista_acumulado[9]} \n{lista_acumulado[10]} \n{lista_acumulado[11]}'''
+    return s  
