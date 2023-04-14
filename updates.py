@@ -35,7 +35,7 @@ def texto_inf(n):
     
     if float(linhas[n][5]) > 0.0:
       verbo_1 = f"cresceu {linhas[n][5]}%"
-    if float(linhas[n][5]) < 0.0:
+    elif float(linhas[n][5]) < 0.0:
       verbo_1 = f"retraiu {linhas[n][5]}%"
     else:
       verbo_1 = "ficou estável"
