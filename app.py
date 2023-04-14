@@ -14,7 +14,7 @@ from flask import Flask, request
 from oauth2client.service_account import ServiceAccountCredentials
 from tchan import ChannelScraper
 from scraper import CPI_PPI, payroll, renda, mes, beige_book, lista_per, meses 
-from updates import payroll_2, texto_inf, delta
+from updates import payroll_2, texto_inf
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
