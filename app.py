@@ -165,13 +165,13 @@ def telegram_bot():
   elif message in ("+CPI", "maisCPI", "mais CPI", "MAISCPI", "MaisCPI", "Maiscpi", "Mais CPI"):
     nova_mensagem = {
        "chat_id" : chat_id, 
-       "text" : f'''<b><u>Acumulado de 12 meses do CPI</u></b> \n\n 
-\U0001f4c8 {linhas[17][1]} \u2192 {linhas[18][1]}% \n \U0001f4c8 {linhas[17][2]} \u2192 {linhas[18][2]}% 
-\U0001f4c8 {linhas[17][3]} \u2192 {linhas[18][3]}% \n \U0001f4c8 {linhas[17][4]} \u2192 {linhas[18][4]}%
-\U0001f4c8 {linhas[17][5]} \u2192 {linhas[18][5]}% \n \U0001f4c8 {linhas[17][6]} \u2192 {linhas[18][6]}%
-\U0001f4c8 {linhas[17][7]} \u2192 {linhas[18][7]}% \n \U0001f4c8 {linhas[17][8]} \u2192 {linhas[18][8]}%
-\U0001f4c8 {linhas[17][9]} \u2192 {linhas[18][9]}% \n \U0001f4c8 {linhas[17][10]} \u2192 {linhas[18][10]}%
-\U0001f4c8 {linhas[17][11]} \u2192 {linhas[18][11]}% \n \U0001f4c8 {linhas[17][12]} \u2192 {linhas[18][12]}%
+       "text" : f'''<b><u>Acumulado de 12 meses do CPI</u></b> \n
+\U0001f4c8 {linhas[17][1]} \u2192 {linhas[18][1]}% \n\U0001f4c8 {linhas[17][2]} \u2192 {linhas[18][2]}% 
+\U0001f4c8 {linhas[17][3]} \u2192 {linhas[18][3]}% \n\U0001f4c8 {linhas[17][4]} \u2192 {linhas[18][4]}%
+\U0001f4c8 {linhas[17][5]} \u2192 {linhas[18][5]}% \n\U0001f4c8 {linhas[17][6]} \u2192 {linhas[18][6]}%
+\U0001f4c8 {linhas[17][7]} \u2192 {linhas[18][7]}% \n\U0001f4c8 {linhas[17][8]} \u2192 {linhas[18][8]}%
+\U0001f4c8 {linhas[17][9]} \u2192 {linhas[18][9]}% \n\U0001f4c8 {linhas[17][10]} \u2192 {linhas[18][10]}%
+\U0001f4c8 {linhas[17][11]} \u2192 {linhas[18][11]}% \n\U0001f4c8 {linhas[17][12]} \u2192 {linhas[18][12]}%
 \n<i>Digite "0" para voltar ao menu inicial.</i>''',
        "parse_mode": "HTML"}
   elif message == "2":
