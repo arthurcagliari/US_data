@@ -174,10 +174,22 @@ def telegram_bot():
 \U0001f4c8 {linhas[17][11]} \u2192 {linhas[18][11]}% \n\U0001f4c8 {linhas[17][12]} \u2192 {linhas[18][12]}%
 \n<i>Digite "0" para voltar ao menu inicial.</i>''',
        "parse_mode": "HTML"}
+   elif message in ("+PPI", "maisPPI", "mais PPI", "MAISPPI", "MaisPPI", "Maisppi", "Mais PPI"):
+    nova_mensagem = {
+       "chat_id" : chat_id, 
+       "text" : f'''<b><u>Acumulado de 12 meses do PPI</u></b> \n
+\U0001f4c8 {linhas[20][1]} \u2192 {linhas[21][1]}% \n\U0001f4c8 {linhas[20][2]} \u2192 {linhas[21][2]}% 
+\U0001f4c8 {linhas[20][3]} \u2192 {linhas[21][3]}% \n\U0001f4c8 {linhas[20][4]} \u2192 {linhas[21][4]}%
+\U0001f4c8 {linhas[20][5]} \u2192 {linhas[21][5]}% \n\U0001f4c8 {linhas[20][6]} \u2192 {linhas[21][6]}%
+\U0001f4c8 {linhas[20][7]} \u2192 {linhas[21][7]}% \n\U0001f4c8 {linhas[20][8]} \u2192 {linhas[21][8]}%
+\U0001f4c8 {linhas[20][9]} \u2192 {linhas[21][9]}% \n\U0001f4c8 {linhas[20][10]} \u2192 {linhas[21][10]}%
+\U0001f4c8 {linhas[20][11]} \u2192 {linhas[21][11]}% \n\U0001f4c8 {linhas[20][12]} \u2192 {linhas[21][12]}%
+\n<i>Digite "0" para voltar ao menu inicial.</i>''',
+       "parse_mode": "HTML"}
   elif message == "2":
     nova_mensagem = {
        "chat_id" : chat_id, 
-       "text" : f'<b><u>PPI dos EUA {bandeira_EUA}</u></b> \n\n{texto_PPI} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
+       "text" : f'<b><u>PPI dos EUA {bandeira_EUA}</u></b> \n\n{texto_PPI} \n\n <u>Se quiser ver o histórico do acumulado de 12 meses do CPI, escreva "+PPI" ou "mais PPI".</u> \n\n <i><b>Digite "0" para voltar ao menu inicial.</b></i>',
        "parse_mode": "HTML"}
   elif message in ("Obrigado", "obrigado", "obrigado!", "Obrigado!", "Obrigada", "obrigada", "obrigada!", "Obrigada!", "Valeu", "valeu", "valeu!", "Valeu!", "tks", "thanks", "Opa, valeu!"):
     nova_mensagem = {
