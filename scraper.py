@@ -200,3 +200,26 @@ def beige_book():
   )
   livro_bege = response["choices"][0]["text"].strip()
   return livro_bege
+
+def lista_per(x):
+  def CPI_PPI_per(s,k):
+    CPI_1 = dados['Results']['series'][s]['data'][k]['value']
+    CPI_2 = dados['Results']['series'][s]['data'][int(k)+12]['value']
+    CPI_per = '%.1f' % ((float(CPI_1) - float(CPI_2))*100/float(CPI_2))
+    return str(CPI_per)
+  
+  lista_CPI_per = []  
+  for w in range(0,12):
+    inflacao_per = CPI_PPI_per(x,w)
+    lista_CPI_per.append(inflacao_per)
+  return lista_CPI_per
+
+def meses(p):
+
+  lista_meses_inf = []
+  for f in range(0,12):
+    mes_inflacao = dados['Results']['series'][p]['data'][f]['periodName']
+    ano_inflacao = dados['Results']['series'][p]['data'][f]['year']
+    data_inf = f'{mes_inflacao[:3]}.{ano_inflacao[2:]}'
+    lista_meses_inf.append(data_inf)
+  return lista_meses_inf
