@@ -162,6 +162,11 @@ def telegram_bot():
        "chat_id" : chat_id, 
        "text" : f'<b><u>CPI dos EUA {bandeira_EUA}</u></b> \n\n{texto_CPI} \n\n <i>Se quiser ver o histórico do acumulado de 12 meses do CPI, escreva "+CPI" ou "mais CPI".</i> \n\n <b>Digite "0" para voltar ao menu inicial.</b>',
        "parse_mode": "HTML"}
+  elif message in ("+CPI", "maisCPI", "mais CPI", "MAISCPI", "MaisCPI", "Maiscpi"):
+    nova_mensagem = {
+       "chat_id" : chat_id, 
+       "text" : f'''<b><u>Acumulado de 12 meses do CPI</u></b> \n\n {linhas[17][1]} \u2192 {linhas[18][1]}''',
+       "parse_mode": "HTML"}
   elif message == "2":
     nova_mensagem = {
        "chat_id" : chat_id, 
