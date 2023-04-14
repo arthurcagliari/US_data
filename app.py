@@ -174,7 +174,7 @@ def telegram_bot():
 \U0001f4c8 {linhas[17][11]} \u2192 {linhas[18][11]}% \n\U0001f4c8 {linhas[17][12]} \u2192 {linhas[18][12]}%
 \n<i>Digite "0" para voltar ao menu inicial.</i>''',
        "parse_mode": "HTML"}
-   elif message in ("+PPI", "maisPPI", "mais PPI", "MAISPPI", "MaisPPI", "Maisppi", "Mais PPI"):
+  elif message in ("+PPI", "maisPPI", "mais PPI", "MAISPPI", "MaisPPI", "Maisppi", "Mais PPI"):
     nova_mensagem = {
        "chat_id" : chat_id, 
        "text" : f'''<b><u>Acumulado de 12 meses do PPI</u></b> \n
