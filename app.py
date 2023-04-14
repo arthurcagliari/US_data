@@ -172,11 +172,11 @@ def telegram_bot():
   livro_bege = linhas[15][1]
   
   ### ajustando tabelinha
- def delta(g,h):
-    lista_acumulado = []
-    for n in range (1,13):
-      wed = f'{linhas[g][n]} \u2192 {linhas[h][n]}%'
-      lista_acumulado.append(wed)
+def delta(g,h):
+  lista_acumulado = []
+  for n in range (1,13):
+    wed = f'{linhas[g][n]} \u2192 {linhas[h][n]}%'
+    lista_acumulado.append(wed)
     s = f'''{lista_acumulado[0]} \n{lista_acumulado[1]}
 {lista_acumulado[2]} \n{lista_acumulado[3]}
 {lista_acumulado[4]} \n{lista_acumulado[5]}
