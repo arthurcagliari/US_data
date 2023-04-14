@@ -13,8 +13,8 @@ from bs4 import BeautifulSoup as bs
 from flask import Flask, request
 from oauth2client.service_account import ServiceAccountCredentials
 from tchan import ChannelScraper
-from scraper import CPI_PPI, payroll, renda, mes, beige_book, meses, lista_per
-from updates import payroll_2, texto_inf, delta
+from scraper import CPI_PPI, payroll, renda, mes, beige_book
+from updates import payroll_2, texto_inf
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
@@ -109,31 +109,6 @@ def raspagem():
   sheet.update(ranges, values)
   return "right"
 
-@app.route("/raspagem1")
-def raspagem1():
-  TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
-  TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
-  GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
-  OPENAI_KEY = os.environ["OPENAI_KEY"]
-  with open("credenciais.json", mode="w") as arquivo:
-    arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
-  conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
-  api = gspread.authorize(conta)
-  planilha = api.open_by_key("1S_ztKSv_gjalYZCjrb5CvU1fQMjHEfLw1k9i50HomF8")
-  sheet = planilha.worksheet("US_Data")
-  app = Flask(__name__)
-  openai.api_key = OPENAI_KEY
-  
-  ranges = 'A20:Q24'
-  lista_mes_CPI = meses(0)
-  lista_mes_PPI = meses(4)
-  lista_vazia = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
-  lista_CPI = lista_per(1)
-  lista_PPI = lista_per(5)
-  values =[lista_mes_CPI, lista_CPI, lista_vazia, lista_mes_PPI, lista_PPI]
-  sheet.update(ranges, values)
-  return "tudo certo"
-
 @app.route("/raspagem2")
 def raspagem2():
   GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
@@ -170,8 +145,6 @@ def telegram_bot():
   
   #### ajustando o conteúdo do Livro Bege
   livro_bege = linhas[15][1]
-  acu_CPI = delta(17,18)
-  acu_PPI = delta(20,21)
     
   #### ajustando as respostas de acordo com os conteúdos explorados até agora
   update = request.json
@@ -186,12 +159,6 @@ def telegram_bot():
     nova_mensagem = {
        "chat_id" : chat_id, 
        "text" : f'<b><u>CPI dos EUA {bandeira_EUA}</u></b> \n\n{texto_CPI} \n\n <i>Se quiser ver o histórico do acumulado de 12 meses do CPI, escreva "+CPI" ou "mais CPI".</i> \n\n <b>Digite "0" para voltar ao menu inicial.</b>',
-       "parse_mode": "HTML"}
-  elif message in ("+CPI", "maisCPI", "mais CPI", "MAISCPI", "MaisCPI", "Maiscpi"):
-    nova_mensagem = {
-       "chat_id" : chat_id, 
-       "text" : f'''<b><u>Acumulado de 12 meses do CPI</u></b>
-       {acu_CPI}''',
        "parse_mode": "HTML"}
   elif message == "2":
     nova_mensagem = {
