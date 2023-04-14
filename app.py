@@ -196,11 +196,7 @@ def telegram_bot():
   
   
   if message in ("/start", "oi", "Olá", "ola", "Ola", "Oi", "oie", "Oie", "oie!", "oieeee", "Olá!", "olá", "Oi!", "Bom dia", "Opa", "Opa!", "opa", "oi!", "0", 0):
-    nova_mensagem = {"chat_id" : chat_id, "text" : f'''Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que você quer conhecer: \n 
-    1 - CPI (índice de preços ao consumidor);
-    2 - PPI (índice de preços ao produtor); 
-    3 - Payroll (mercado de trabalho);  
-    4 - Livro Bege'''}
+    nova_mensagem = {"chat_id" : chat_id, "text" : f'Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que você quer conhecer: \n1 - CPI (índice de preços ao consumidor); \n2 - PPI (índice de preços ao produtor); \n3 - Payroll (mercado de trabalho); \n4 - Livro Bege'}
   elif message == "1":
      nova_mensagem = {
        "chat_id" : chat_id, 
