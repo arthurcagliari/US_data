@@ -198,23 +198,23 @@ def telegram_bot():
   if message in ("/start", "oi", "Olá", "ola", "Ola", "Oi", "oie", "Oie", "oie!", "oieeee", "Olá!", "olá", "Oi!", "Bom dia", "Opa", "Opa!", "opa", "oi!", "0", 0):
     nova_mensagem = {"chat_id" : chat_id, "text" : f'Olá, seja bem-vindo(a) ao US Data Robot! Digite o número que indique o dado dos EUA que você quer conhecer: \n1 - CPI (índice de preços ao consumidor); \n2 - PPI (índice de preços ao produtor); \n3 - Payroll (mercado de trabalho); \n4 - Livro Bege'}
   elif message == "1":
-     nova_mensagem = {
+    nova_mensagem = {
        "chat_id" : chat_id, 
        "text" : f'<b><u>CPI dos EUA {bandeira_EUA}</u></b> \n\n{texto_CPI} \n\n <i>Se quiser ver o histórico do acumulado de 12 meses do CPI, escreva "+CPI" ou "mais CPI".</i> \n\n <b>Digite "0" para voltar ao menu inicial.</b>',
        "parse_mode": "HTML"}
   elif message in ("+CPI", "maisCPI", "mais CPI", "MAISCPI", "MaisCPI", "Maiscpi"):
-     nova_mensagem = {
+    nova_mensagem = {
        "chat_id" : chat_id, 
        "text" : f'''<b><u>Acumulado de 12 meses do CPI</u></b>
        {acu_CPI}''',
        "parse_mode": "HTML"}
   elif message == "2":
-     nova_mensagem = {
+    nova_mensagem = {
        "chat_id" : chat_id, 
        "text" : f'<b><u>PPI dos EUA {bandeira_EUA}</u></b> \n\n{texto_PPI} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
        "parse_mode": "HTML"}
   elif message in ("Obrigado", "obrigado", "obrigado!", "Obrigado!", "Obrigada", "obrigada", "obrigada!", "Obrigada!", "Valeu", "valeu", "valeu!", "Valeu!", "tks", "thanks", "Opa, valeu!"):
-     nova_mensagem = {
+    nova_mensagem = {
        "chat_id" : chat_id, 
        "text" : "Estamos aqui para isso!"}
   elif message == "3":
@@ -223,7 +223,7 @@ def telegram_bot():
       "text" : f'<b><u>Payroll dos EUA {bandeira_EUA}</u></b> \n <i>(Mercado de trabalho)</i> \n\n{payroll_text} \n\n <i>Digite "0" para voltar ao menu inicial.</i>',
       "parse_mode" : "HTML"}
   elif message == "4":
-     nova_mensagem = {
+    nova_mensagem = {
        "chat_id" : chat_id, 
        "text" : f'<b><u> Livro Bege (Fed) {beige_bk}</u></b> \n\n{livro_bege} \n\n <i>(Este texto foi resumido e redigido por uma inteligência artificial)</i> \n\n <i>Digite "0" para voltar ao menu inicial.</i>', 
        "parse_mode": "HTML"}
