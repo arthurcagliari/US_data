@@ -179,10 +179,11 @@ def telegram_bot():
       wed = f'{linhas[g][n]} \u2192 {linhas[h][n]}%'
       lista_acumulado.append(wed)
     s = f'''{lista_acumulado[0]} \n{lista_acumulado[1]}
-    {lista_acumulado[2]} \n{lista_acumulado[3]} \n{lista_acumulado[4]}
-    {lista_acumulado[5]} \n{lista_acumulado[6]} \n{lista_acumulado[7]}
-    {lista_acumulado[8]} \n{lista_acumulado[9]} \n{lista_acumulado[10]}
-    {lista_acumulado[11]} \n{lista_acumulado[12]}'''
+    {lista_acumulado[2]} \n{lista_acumulado[3]}
+    {lista_acumulado[4]} \n{lista_acumulado[5]}
+    {lista_acumulado[6]} \n{lista_acumulado[7]}
+    {lista_acumulado[8]} \n{lista_acumulado[9]}
+    {lista_acumulado[10]} \n{lista_acumulado[11]}'''
     return s  
 
   acu_CPI = delta(17,18)
