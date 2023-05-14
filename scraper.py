@@ -33,7 +33,7 @@ def CPI_PPI(n,p,s,q):
   headers = {'Content-type': 'application/json'}
   data = json.dumps({"registrationkey": BLS_API_KEY, "seriesid": ['CUSR0000SA0','CUUR0000SA0', 'CUSR0000SA0L1E','CUUR0000SA0L1E','WPSFD4','WPUFD4', 'WPSFD49104','WPUFD49104', 'CES0000000001','LNS14000000','CES0500000003'],"startyear":"2021", "endyear":"2023"})
   pb = requests.post('https://api.bls.gov/publicAPI/v2/timeseries/data/', data=data, headers=headers)
-  json_data = json.loads(p.text)
+  json_data = json.loads(pb.text)
   for series in json_data['Results']['series']:
       x=prettytable.PrettyTable(["series id","year","period","value","footnotes"])
       seriesId = series['seriesID']
