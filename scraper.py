@@ -100,6 +100,29 @@ def CPI_PPI(n,p,s,q):
   return lista_dados
 
 def payroll():
+  BLS_API_KEY = os.environ["BLS_API_KEY"]
+  headers = {'Content-type': 'application/json'}
+  data = json.dumps({"registrationkey": BLS_API_KEY, "seriesid": ['CUSR0000SA0','CUUR0000SA0', 'CUSR0000SA0L1E','CUUR0000SA0L1E','WPSFD4','WPUFD4', 'WPSFD49104','WPUFD49104', 'CES0000000001','LNS14000000','CES0500000003'],"startyear":"2021", "endyear":"2023"})
+  pb = requests.post('https://api.bls.gov/publicAPI/v2/timeseries/data/', data=data, headers=headers)
+  json_data = json.loads(pb.text)
+  for series in json_data['Results']['series']:
+      x=prettytable.PrettyTable(["series id","year","period","value","footnotes"])
+      seriesId = series['seriesID']
+      for item in series['data']:
+          year = item['year']
+          period = item['period']
+          value = item['value']
+          footnotes=""
+          for footnote in item['footnotes']:
+              if footnote:
+                  footnotes = footnotes + footnote['text'] + ','
+          if 'M01' <= period <= 'M12':
+              x.add_row([seriesId,year,period,value,footnotes[0:-1]])
+      output = open(seriesId + '.txt','w')
+      output.write (x.get_string())
+      output.close()
+      
+  dados = pb.json()  
   mes_atual_mt = dados['Results']['series'][8]['data'][0]['value']
   mes_anterior_mt = dados['Results']['series'][8]['data'][1]['value']
   mes_antes_anterior_mt = dados['Results']['series'][8]['data'][2]['value']
@@ -124,6 +147,29 @@ def renda():
   return lista_ganho
 
 def mes(p,n):
+  BLS_API_KEY = os.environ["BLS_API_KEY"]
+  headers = {'Content-type': 'application/json'}
+  data = json.dumps({"registrationkey": BLS_API_KEY, "seriesid": ['CUSR0000SA0','CUUR0000SA0', 'CUSR0000SA0L1E','CUUR0000SA0L1E','WPSFD4','WPUFD4', 'WPSFD49104','WPUFD49104', 'CES0000000001','LNS14000000','CES0500000003'],"startyear":"2021", "endyear":"2023"})
+  pb = requests.post('https://api.bls.gov/publicAPI/v2/timeseries/data/', data=data, headers=headers)
+  json_data = json.loads(pb.text)
+  for series in json_data['Results']['series']:
+      x=prettytable.PrettyTable(["series id","year","period","value","footnotes"])
+      seriesId = series['seriesID']
+      for item in series['data']:
+          year = item['year']
+          period = item['period']
+          value = item['value']
+          footnotes=""
+          for footnote in item['footnotes']:
+              if footnote:
+                  footnotes = footnotes + footnote['text'] + ','
+          if 'M01' <= period <= 'M12':
+              x.add_row([seriesId,year,period,value,footnotes[0:-1]])
+      output = open(seriesId + '.txt','w')
+      output.write (x.get_string())
+      output.close()
+        
+    dados = pb.json()
     if dados['Results']['series'][p]['data'][n]['period'] == 'M01':
       mes_1 = 'janeiro'
     elif dados['Results']['series'][p]['data'][n]['period'] == 'M02':
@@ -205,6 +251,29 @@ def beige_book():
   return livro_bege
 
 def lista_per(x):
+  BLS_API_KEY = os.environ["BLS_API_KEY"]
+  headers = {'Content-type': 'application/json'}
+  data = json.dumps({"registrationkey": BLS_API_KEY, "seriesid": ['CUSR0000SA0','CUUR0000SA0', 'CUSR0000SA0L1E','CUUR0000SA0L1E','WPSFD4','WPUFD4', 'WPSFD49104','WPUFD49104', 'CES0000000001','LNS14000000','CES0500000003'],"startyear":"2021", "endyear":"2023"})
+  pb = requests.post('https://api.bls.gov/publicAPI/v2/timeseries/data/', data=data, headers=headers)
+  json_data = json.loads(pb.text)
+  for series in json_data['Results']['series']:
+      x=prettytable.PrettyTable(["series id","year","period","value","footnotes"])
+      seriesId = series['seriesID']
+      for item in series['data']:
+          year = item['year']
+          period = item['period']
+          value = item['value']
+          footnotes=""
+          for footnote in item['footnotes']:
+              if footnote:
+                  footnotes = footnotes + footnote['text'] + ','
+          if 'M01' <= period <= 'M12':
+              x.add_row([seriesId,year,period,value,footnotes[0:-1]])
+      output = open(seriesId + '.txt','w')
+      output.write (x.get_string())
+      output.close()
+      
+  dados = pb.json()
   if x == 1:
     nome_indice = "CPI"
   if x == 5:
@@ -224,6 +293,29 @@ def lista_per(x):
   return lista_CPI_per
 
 def meses(p):
+  BLS_API_KEY = os.environ["BLS_API_KEY"]
+  headers = {'Content-type': 'application/json'}
+  data = json.dumps({"registrationkey": BLS_API_KEY, "seriesid": ['CUSR0000SA0','CUUR0000SA0', 'CUSR0000SA0L1E','CUUR0000SA0L1E','WPSFD4','WPUFD4', 'WPSFD49104','WPUFD49104', 'CES0000000001','LNS14000000','CES0500000003'],"startyear":"2021", "endyear":"2023"})
+  pb = requests.post('https://api.bls.gov/publicAPI/v2/timeseries/data/', data=data, headers=headers)
+  json_data = json.loads(pb.text)
+  for series in json_data['Results']['series']:
+      x=prettytable.PrettyTable(["series id","year","period","value","footnotes"])
+      seriesId = series['seriesID']
+      for item in series['data']:
+          year = item['year']
+          period = item['period']
+          value = item['value']
+          footnotes=""
+          for footnote in item['footnotes']:
+              if footnote:
+                  footnotes = footnotes + footnote['text'] + ','
+          if 'M01' <= period <= 'M12':
+              x.add_row([seriesId,year,period,value,footnotes[0:-1]])
+      output = open(seriesId + '.txt','w')
+      output.write (x.get_string())
+      output.close()
+      
+  dados = pb.json()
   lista_meses_inf = []
   for f in range(0,12):
     mes_inflacao = dados['Results']['series'][p]['data'][f]['periodName']
