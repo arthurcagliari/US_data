@@ -7,7 +7,7 @@ import pandas as pd
 import prettytable
 import requests
 import telegram
-
+import prettytable
 
 from bs4 import BeautifulSoup as bs
 from flask import Flask, request
@@ -35,6 +35,7 @@ def index():
 
 @app.route("/raspagem")
 def raspagem():
+  BLS_API_KEY = os.environ["BLS_API_KEY"]
   TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
   TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
   GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
