@@ -49,7 +49,7 @@ def raspagem():
   openai.api_key = OPENAI_KEY
       
    ### Montando a estrutura para formação de texto, de acordo com os dados dos EUA
-  #dados = p.json()
+  dados = p.json()
   lista_CPI = CPI_PPI(0,1,2,3)
   lista_PPI = CPI_PPI(4,5,6,7)
   lista_vagas = payroll()
