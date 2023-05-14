@@ -49,7 +49,7 @@ for series in json_data['Results']['series']:
       
 ### Montando a estrutura para formação de texto, de acordo com os dados dos EUA
 dados = p.json()
-def CPI_PPI(n,p,s,q):
+def CPI_PPI(n,m,s,q):
 ###### Leituras recentes
   if n == 0:
     indice = "CPI"
@@ -57,8 +57,8 @@ def CPI_PPI(n,p,s,q):
     indice = "PPI"
   CPI_atual = dados['Results']['series'][n]['data'][0]['value'] ### dado ajustado
   CPI_anterior = dados['Results']['series'][n]['data'][1]['value']
-  CPI_atual_una = dados['Results']['series'][p]['data'][0]['value'] ### dado não ajustado
-  CPI_mes_atual_12 = dados['Results']['series'][p]['data'][12]['value']
+  CPI_atual_una = dados['Results']['series'][m]['data'][0]['value'] ### dado não ajustado
+  CPI_mes_atual_12 = dados['Results']['series'][m]['data'][12]['value']
   CPI_mensal = (float(CPI_atual) - float(CPI_anterior))*100/float(CPI_anterior)
   CPI_anual = (float(CPI_atual_una) - float(CPI_mes_atual_12))*100/float(CPI_mes_atual_12)
   CPI_mensal_ajustado ='%.1f' % CPI_mensal
@@ -76,9 +76,9 @@ def CPI_PPI(n,p,s,q):
 
   ####### Leituras anteriores do CPI
   CPI_anterior = dados['Results']['series'][n]['data'][1]['value']
-  CPI_anterior_una = dados['Results']['series'][p]['data'][1]['value']
+  CPI_anterior_una = dados['Results']['series'][m]['data'][1]['value']
   CPI_anterior_2 = dados['Results']['series'][n]['data'][2]['value']
-  CPI_mes_anterior_12 = dados['Results']['series'][p]['data'][13]['value']
+  CPI_mes_anterior_12 = dados['Results']['series'][m]['data'][13]['value']
   CPI_mensal_anterior = (float(CPI_anterior) - float(CPI_anterior_2))*100/float(CPI_anterior_2)
   CPI_anual_anterior = (float(CPI_anterior_una) - float(CPI_mes_anterior_12))*100/float(CPI_mes_anterior_12)
   CPI_mensal_anterior_ajustado ='%.1f' % CPI_mensal_anterior
@@ -121,28 +121,28 @@ def renda():
   lista_ganho = ["", ganho_atual, ganho_anterior, ganho_antes_ant, ganho_12anterior, ganho_13anterior, ganho_perc_mes, ganho_perc_mes_ant, ganho_perc_ano, ganho_perc_ano_ant]
   return lista_ganho
 
-def mes(p,n):
-    if dados['Results']['series'][p]['data'][n]['period'] == 'M01':
+def mes(m,n):
+    if dados['Results']['series'][m]['data'][n]['period'] == 'M01':
       mes_1 = 'janeiro'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M02':
+    elif dados['Results']['series'][m]['data'][n]['period'] == 'M02':
       mes_1 = 'fevereiro'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M03':
+    elif dados['Results']['series'][m]['data'][n]['period'] == 'M03':
       mes_1 = 'março'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M04':
+    elif dados['Results']['series'][m]['data'][n]['period'] == 'M04':
       mes_1 = 'abril'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M05':
+    elif dados['Results']['series'][m]['data'][n]['period'] == 'M05':
       mes_1 = 'maio'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M06':
+    elif dados['Results']['series'][m]['data'][n]['period'] == 'M06':
       mes_1 = 'junho'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M07':
+    elif dados['Results']['series'][m]['data'][n]['period'] == 'M07':
       mes_1 = 'julho'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M08':
+    elif dados['Results']['series'][m]['data'][n]['period'] == 'M08':
       mes_1 = 'agosto'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M09':
+    elif dados['Results']['series'][m]['data'][n]['period'] == 'M09':
       mes_1 = 'setembro'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M10':
+    elif dados['Results']['series'][m]['data'][n]['period'] == 'M10':
       mes_1 = 'outubro'
-    elif dados['Results']['series'][p]['data'][n]['period'] == 'M11':
+    elif dados['Results']['series'][m]['data'][n]['period'] == 'M11':
       mes_1= 'novembro'
     else:
       mes_1 = 'dezembro'
@@ -221,11 +221,11 @@ def lista_per(x):
       lista_CPI_per.insert(0, nome_indice)
   return lista_CPI_per
 
-def meses(p):
+def meses(m):
   lista_meses_inf = []
   for f in range(0,12):
-    mes_inflacao = dados['Results']['series'][p]['data'][f]['periodName']
-    ano_inflacao = dados['Results']['series'][p]['data'][f]['year']
+    mes_inflacao = dados['Results']['series'][m]['data'][f]['periodName']
+    ano_inflacao = dados['Results']['series'][m]['data'][f]['year']
     data_inf = f'{mes_inflacao[:3]}.{ano_inflacao[2:]}'
     lista_meses_inf.append(data_inf)
     if f == 11:
