@@ -28,7 +28,6 @@ openai.api_key = OPENAI_KEY
 
 
 ### Montando a estrutura para formação de texto, de acordo com os dados dos EUA
-dados = p.json()
 def CPI_PPI(n,p,s,q):
   BLS_API_KEY = os.environ["BLS_API_KEY"]
   headers = {'Content-type': 'application/json'}
@@ -51,8 +50,9 @@ def CPI_PPI(n,p,s,q):
       output = open(seriesId + '.txt','w')
       output.write (x.get_string())
       output.close()
- 
+      
 ###### Leituras recentes
+  dados = p.json()
   if n == 0:
     indice = "CPI"
   else:
