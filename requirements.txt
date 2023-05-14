@@ -10,3 +10,4 @@ pandas
 prettytable
 bs4
 telegram
+prettytable
