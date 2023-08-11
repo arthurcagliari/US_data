@@ -214,20 +214,20 @@ def lista_per(x):
     return str(CPI_per)
   
   lista_CPI_per = []  
-  for w in range(0,24):
+  for w in range(0,12):
     inflacao_per = CPI_PPI_per(x,w)
     lista_CPI_per.append(inflacao_per)
-    if w == 23:
+    if w == 11:
       lista_CPI_per.insert(0, nome_indice)
   return lista_CPI_per
 
 def meses(m):
   lista_meses_inf = []
-  for f in range(0,24):
+  for f in range(0,12):
     mes_inflacao = dados['Results']['series'][m]['data'][f]['periodName']
     ano_inflacao = dados['Results']['series'][m]['data'][f]['year']
     data_inf = f'{mes_inflacao[:3]}.{ano_inflacao[2:]}'
     lista_meses_inf.append(data_inf)
-    if f == 23:
+    if f == 11:
       lista_meses_inf.insert(0, 'mês/referência')
   return lista_meses_inf
